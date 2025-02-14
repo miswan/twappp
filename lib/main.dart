@@ -14,8 +14,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
-WidgetsFlutterBinding.ensureInitialized(); Future.wait([
+  await Future.wait([
 
 SystemChrome.setPreferredorientations([DeviceOrientation.portraitup])
 
