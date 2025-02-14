@@ -9,7 +9,11 @@ import 'core/app_export.dart';
 
 var globalMessengerKey = GlobalKey ScaffoldMessengerstate>();
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
 WidgetsFlutterBinding.ensureInitialized(); Future.wait([
 
