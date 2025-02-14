@@ -1,20 +1,16 @@
 part of 'discover_bloc.dart';
 
-/// Represents the state of Discover in the application.
-
-// ignore_for_file: must_be_immutable
-
 class DiscoverState extends Equatable {
-  DiscoverState({this.discoverModelObj});
+  final DiscoverModel? discoverModelObj;
 
-  DiscoverModel? discoverModelObj;
-
-  @override
-  List<Object?> get props => [discoverModelObj];
+  const DiscoverState({this.discoverModelObj});
 
   DiscoverState copyWith({DiscoverModel? discoverModelObj}) {
     return DiscoverState(
       discoverModelObj: discoverModelObj ?? this.discoverModelObj,
     );
   }
+
+  @override
+  List<Object?> get props => [discoverModelObj];
 }

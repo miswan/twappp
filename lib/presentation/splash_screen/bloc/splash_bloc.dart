@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-
+import '../models/splash_model.dart';
 import '../../../core/app_export.dart';
 
-import '../models/splash_model.dart';
-
 part 'splash_event.dart';
-
 part 'splash_state.dart';
 
-/// A bloc that manages the state of a Splash according to the event that is dispatched to it.
-
 class SplashBloc extends Bloc<SplashEvent, Splashstate> {
-  SplashBloc(Splashstate initialstate) : super(initialstate) {
+  SplashBloc() : super(Splashstate(splashModelObj: const SplashModel())) {
     on<SplashInitialEvent>(_onInitialize);
   }
 
@@ -21,8 +16,8 @@ class SplashBloc extends Bloc<SplashEvent, Splashstate> {
     SplashInitialEvent event,
     Emitter<Splashstate> emit,
   ) async {
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      NavigatorService.popAndPushNamed(
+    await Future.delayed(const Duration(milliseconds: 3000), () {
+      NavigatorService.pushReplacementNamed(
         AppRoutes.onboardingOneScreen,
       );
     });

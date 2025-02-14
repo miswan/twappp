@@ -1,21 +1,25 @@
 part of 'account_details_bloc.dart';
 
-/// Represents the state of AccountDetails in the application.
-
-// ignore_for_file: must_be_immutable
-
 class AccountDetailsState extends Equatable {
-  AccountDetailsState({this.accountDetailsModelObj});
+  final AccountDetailsModel? accountDetailsModelObj;
+  final bool isLoading;
 
-  AccountDetailsModel? accountDetailsModelObj;
+  const AccountDetailsState({
+    this.accountDetailsModelObj,
+    this.isLoading = false,
+  });
 
-  @override
-  List<Object?> get props => [accountDetailsModelObj];
-
-  AccountDetailsState copyWith({AccountDetailsModel? accountDetailsModelObj}) {
+  AccountDetailsState copyWith({
+    AccountDetailsModel? accountDetailsModelObj,
+    bool? isLoading,
+  }) {
     return AccountDetailsState(
       accountDetailsModelObj:
           accountDetailsModelObj ?? this.accountDetailsModelObj,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
+
+  @override
+  List<Object?> get props => [accountDetailsModelObj, isLoading];
 }

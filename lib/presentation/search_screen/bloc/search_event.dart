@@ -1,21 +1,35 @@
-part of 'search_event.dart';
+import 'package:equatable/equatable.dart';
 
-/// Abstract class for all events that can be dispatched from the
+part of 'search_bloc.dart';
 
-///Search widget.
-
-///
-
-/// Events must be immutable and implement the [Equatable] interface.
-
-class SearchEvent extends Equatable {
+@immutable
+abstract class SearchEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-/// Event that is dispatched when the Search widget is first created.
+class SearchInitialEvent extends SearchEvent {}
 
-class SearchInitialEvent extends SearchEvent {
+class SearchQueryChangedEvent extends SearchEvent {
+  final String query;
+
+  SearchQueryChangedEvent(this.query);
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [query];
+}
+
+/// Event when search is submitted
+class SearchSubmittedEvent extends SearchEvent {
+  final String query;
+
+  const SearchSubmittedEvent(this.query);
+
+  @override
+  List<Object?> get props => [query];
+}
+
+/// Event to clear search
+class SearchClearedEvent extends SearchEvent {
+  const SearchClearedEvent();
 }

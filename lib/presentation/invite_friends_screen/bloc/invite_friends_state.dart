@@ -1,21 +1,21 @@
-part of 'invite_friends_state.dart';
+part of 'invite_friends_bloc.dart';
 
-/// Represents the state of InviteFriends in the application.
+class InviteFriendsState extends Equatable {
+  final InviteFriendsModel? inviteFriendsModelObj;
 
-// ignore_for_file: must_be_immutable
+  const InviteFriendsState({
+    this.inviteFriendsModelObj,
+  });
 
-class InviteFriendsstate extends Equatable {
-  InviteFriendsState({this.inviteFriendsModelobj});
-
-  InviteFriendsModel? inviteFriendsModelobj;
+  InviteFriendsState copyWith({
+    InviteFriendsModel? inviteFriendsModelObj,
+  }) {
+    return InviteFriendsState(
+      inviteFriendsModelObj:
+          inviteFriendsModelObj ?? this.inviteFriendsModelObj,
+    );
+  }
 
   @override
   List<Object?> get props => [inviteFriendsModelObj];
-
-  InviteFriendsstate copywith({InviteFriendsModel? inviteFriendsModelobj}) {
-    return InviteFriendsState(
-      inviteFriendsModelObj:
-          inviteFriendsModelobj ?? this.inviteFriendsModelObj,
-    );
-  }
 }

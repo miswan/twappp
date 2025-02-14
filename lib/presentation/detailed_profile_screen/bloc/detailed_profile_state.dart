@@ -1,31 +1,21 @@
-
-
-part of 'detailed_profile_state.dart';
-
-/// Represents the state of DetailedProfile in the application.
-
-// ignore_for_file: must_be_immutable
+part of 'detailed_profile_bloc.dart';
 
 class DetailedProfileState extends Equatable {
+  final DetailedProfileModel? detailedProfileModelObj;
 
-DetailedProfileState({this.detailedProfileModelObj});
+  const DetailedProfileState({
+    this.detailedProfileModelObj,
+  });
 
-DetailedProfileModel? detailedProfileModelobj;
+  DetailedProfileState copyWith({
+    DetailedProfileModel? detailedProfileModelObj,
+  }) {
+    return DetailedProfileState(
+      detailedProfileModelObj:
+          detailedProfileModelObj ?? this.detailedProfileModelObj,
+    );
+  }
 
-@override
-
-List<Object?> get props => [detailedProfileModelObj];
-
-DetailedProfilestate copywith(
-
-{DetailedProfileModel? detailedProfileModelobj}) {
-
-return DetailedProfileState(
-
-detailedProfileModelobj:
-
-detailedProfileModelobj ?? this.detailedProfileModelobj,
-
-);
-
+  @override
+  List<Object?> get props => [detailedProfileModelObj];
 }

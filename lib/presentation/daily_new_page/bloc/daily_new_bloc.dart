@@ -12,7 +12,7 @@ part 'daily_new_state.dart';
 /// A bloc that manages the state of a DailyNew according to the event that is dispatched to it.
 
 class DailyNewBloc extends Bloc<DailyNewEvent, DailyNewState> {
-  DailyNewBloc(DailyNewState initialState) : super(initialState) {
+  DailyNewBloc() : super(DailyNewState(dailyNewModelObj: DailyNewModel())) {
     on<DailyNewInitialEvent>(_onInitialize);
   }
 

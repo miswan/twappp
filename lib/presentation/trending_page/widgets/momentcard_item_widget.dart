@@ -1,5 +1,3 @@
-import '../controller/trending_controller.dart';
-import '../models/momentcard_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:miswan_s_application3/core/app_export.dart';
 

@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 import '../../../core/app_export.dart';
@@ -8,55 +7,16 @@ import '../../../core/app_export.dart';
 // ignore_for_file: must_be_immutable
 
 class Profilessection1ItemModel extends Equatable {
+  final String? nineteenOne;
+  final String? agnessMonica;
+  final String? agnessMonica1;
 
-Profilessection1ItemModel(
+  const Profilessection1ItemModel({
+    this.nineteenOne,
+    this.agnessMonica,
+    this.agnessMonica1,
+  });
 
-{this.nineteenone, this.agnessMonica, this.agnessmonical, this.id)) {
-
-nineteenone = nineteenone ?? ImageConstant.img19;
-
-agnessMonica = agnessMonica ?? ImageConstant.imgPlayDeepPurpleA200;
-
-agnessmonica1 = agnessmonical ?? "Agness Monica";
-
-id = id ?? "";
-
-String? nineteenone;
-
-String? agnessMonica;
-
-String? agnessmonica1;
-
-String? id;
-
-Profilessection1ItemModel copywith({
-
-String? nineteenone,
-
-String? agnessMonica,
-
-String? agnessmonical,
-
-String? id,
-
-}) {
-
-return Profilessection1ItemModel(
-
-nineteenone: nineteenone ?? this.nineteenone,
-
-agnessMonica: agnessMonica ?? this.agnessMonica,
-
-agnessmonical: agnessmonical ?? this.agnessmonical,
-
-id: id ?? this.id,
-
-);
-
-}
-
-@override
-
-List<Object?> get props => [nineteenone, agnessMonica, agnessmonical, id];
-
+  @override
+  List<Object?> get props => [nineteenOne, agnessMonica, agnessMonica1];
 }

@@ -1,26 +1,19 @@
+part of 'theme_bloc.dart';
 
-part of 'theme_event.dart';
+import 'package:your_project/utils/pref_utils.dart';
 
-class ThemeEvent extends Equatable {
+abstract class ThemeEvent extends Equatable {
+  const ThemeEvent();
 
-@override
-
-List<Object?> get props throw UnimplementedError();
-
+  @override
+  List<Object> get props => [];
 }
 
 class ThemeChangeEvent extends ThemeEvent {
+  final AppTheme themeType;
 
-ThemeChangeEvent({required this.themeType}) : super() {
+  const ThemeChangeEvent({required this.themeType});
 
-| Prefutils().setThemeData(themeType);
-
-}
-
-final String themeType;
-
-@override
-
-List<Object?> get props [];
-
+  @override
+  List<Object> get props => [themeType];
 }

@@ -7,13 +7,28 @@ import 'package:miswan_s_application3/widgets/app_bar/appbar_leading_image.dart'
 import 'package:miswan_s_application3/widgets/app_bar/custom_app_bar.dart';
 import 'package:miswan_s_application3/widgets/custom_icon_button.dart';
 import 'package:miswan_s_application3/widgets/custom_text_form_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/comments_bloc.dart';
 
 // ignore_for_file: must_be_immutable
-class CommentsScreen extends GetWidget<CommentsController> {
-  const CommentsScreen({Key? key})
-      : super(
-          key: key,
-        );
+class CommentsScreen extends StatelessWidget {
+  final TextEditingController commentController = TextEditingController();
+
+  CommentsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => CommentsBloc()..add(LoadComments()),
+      child: _CommentsScreenContent(commentController: commentController),
+    );
+  }
+}
+
+class _CommentsScreenContent extends StatelessWidget {
+  final TextEditingController commentController;
+
+  const _CommentsScreenContent({required this.commentController});
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +54,11 @@ class CommentsScreen extends GetWidget<CommentsController> {
             ],
           ),
         ),
-        bottomNavigationBar: _buildComment(),
+        bottomNavigationBar: _buildComment(context),
       ),
     );
   }
 
-  /// Section Widget
   PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       leadingWidth: double.maxFinite,
@@ -55,43 +69,42 @@ class CommentsScreen extends GetWidget<CommentsController> {
     );
   }
 
-  /// Section Widget
   Widget _buildUserProfile() {
-    return Obx(
-      () => ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return Padding(
-            padding: EdgeInsets.symmetric(vertical: 7.0.v),
-            child: SizedBox(
-              width: double.maxFinite,
-              child: Divider(
-                height: 2.v,
-                thickness: 2.v,
-                color: appTheme.deepPurple50,
-              ),
-            ),
+    return BlocBuilder<CommentsBloc, CommentsState>(
+      builder: (context, state) {
+        if (state is CommentsLoading) {
+          return Center(child: CircularProgressIndicator());
+        } else if (state is CommentsLoaded) {
+          return ListView.separated(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            separatorBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 7.0.v),
+                child: SizedBox(
+                  width: double.maxFinite,
+                  child: Divider(
+                    height: 2.v,
+                    thickness: 2.v,
+                    color: appTheme.deepPurple50,
+                  ),
+                ),
+              );
+            },
+            itemCount: state.comments.length,
+            itemBuilder: (context, index) {
+              return Userprofile3ItemWidget(state.comments[index]);
+            },
           );
-        },
-        itemCount:
-            controller.commentsModelObj.value.userprofile3ItemList.value.length,
-        itemBuilder: (context, index) {
-          Userprofile3ItemModel model = controller
-              .commentsModelObj.value.userprofile3ItemList.value[index];
-          return Userprofile3ItemWidget(
-            model,
-          );
-        },
-      ),
+        } else if (state is CommentsError) {
+          return Center(child: Text(state.message));
+        }
+        return Container();
+      },
     );
   }
 
-  /// Section Widget
-  Widget _buildComment() {
+  Widget _buildComment(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
         left: 16.h,
@@ -103,7 +116,7 @@ class CommentsScreen extends GetWidget<CommentsController> {
         children: [
           Expanded(
             child: CustomTextFormField(
-              controller: controller.commentController,
+              controller: commentController,
               hintText: "lbl_write_a_comment".tr,
               textInputAction: TextInputAction.done,
               borderDecoration: TextFormFieldStyleHelper.fillGray,
@@ -117,6 +130,14 @@ class CommentsScreen extends GetWidget<CommentsController> {
               width: 50.adaptSize,
               padding: EdgeInsets.all(13.h),
               decoration: IconButtonStyleHelper.fillDeepPurpleATL25,
+              onTap: () {
+                if (commentController.text.isNotEmpty) {
+                  context.read<CommentsBloc>().add(
+                        AddComment(commentController.text),
+                      );
+                  commentController.clear();
+                }
+              },
               child: CustomImageView(
                 imagePath: ImageConstant.imgGroup9143,
               ),

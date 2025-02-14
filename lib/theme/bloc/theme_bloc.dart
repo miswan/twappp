@@ -1,30 +1,20 @@
-
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../core/app_export.dart';
 
-part 'theme_event.dart';
+enum ThemeType { light, dark }
 
-part 'theme_state.dart';
+class ThemeState {
+  ThemeType themeType;
 
-class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-
-ThemeBloc(ThemeState initialstate) : super(initialstate) {
-
-on<ThemeChangeEvent>(_changeTheme);
-
+  ThemeState({required this.themeType});
 }
 
-_change Theme (
-
-ThemeChangeEvent event,
-
-Emitter<Themestate> emit,
-
-) async {
-
-emit(state.copywith(themeType: event.themeType));
-
+class ThemeBloc extends Bloc<dynamic, ThemeState> {
+  ThemeBloc(ThemeState initial) : super(initial) {
+    on<dynamic>((event, emit) {
+      // Handle theme changes here
+    });
+  }
 }

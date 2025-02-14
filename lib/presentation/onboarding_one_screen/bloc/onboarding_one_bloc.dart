@@ -20,5 +20,9 @@ class OnboardingOneBloc extends Bloc<OnboardingOneEvent, OnboardingOneState> {
   _onInitialize(
     OnboardingOneInitialEvent event,
     Emitter<OnboardingOneState> emit,
-  ) async {}
+  ) async {
+    emit(state.copyWith(
+      onboardingOneModelObj: OnboardingOneModel(),
+    ));
+  }
 }

@@ -1,34 +1,30 @@
-part of 'log_in_event.dart';
+part of 'log_in_bloc.dart';
 
-/// Abstract class for all events that can be dispatched from the
+@immutable
+abstract class LogInEvent extends Equatable {
+  const LogInEvent();
 
-///LogIn widget.
-
-///
-
-/// Events must be immutable and implement the [Equatable] interface.
-
-class LogInEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-/// Event that is dispatched when the Login widget is first created.
-
-class LogInInitialEvent extends LogInEvent {
-  @override
-  List<Object?> get props => [];
-}
-
-///Event for changing password visibility
-
-// ignore_for_file: must_be_immutable
+class LogInInitialEvent extends LogInEvent {}
 
 class ChangePasswordVisibilityEvent extends LogInEvent {
-  ChangePasswordVisibilityEvent({required this.value});
+  final bool value;
 
-  bool value;
+  const ChangePasswordVisibilityEvent({required this.value});
 
   @override
   List<Object?> get props => [value];
+}
+
+class SubmitLoginEvent extends LogInEvent {
+  final String email;
+  final String password;
+
+  const SubmitLoginEvent({required this.email, required this.password});
+
+  @override
+  List<Object?> get props => [email, password];
 }

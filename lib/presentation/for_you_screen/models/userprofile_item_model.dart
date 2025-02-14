@@ -1,16 +1,20 @@
-import '../../../core/app_export.dart';
+import 'package:equatable/equatable.dart';
+import 'package:rxdart/rxdart.dart';
 
-/// This class is used in the [userprofile_item_widget] screen.
-class UserprofileItemModel {
+class UserprofileItemModel extends Equatable {
   UserprofileItemModel({
-    this.username,
-    this.id,
+    String? username,
+    String? imageUrl,
   }) {
-    username = username ?? Rx("Elisa Carl");
-    id = id ?? Rx("");
+    username = username ?? "";
+    imageUrl = imageUrl ?? "";
+    this.username = BehaviorSubject<String>.seeded(username);
+    this.imageUrl = BehaviorSubject<String>.seeded(imageUrl);
   }
 
-  Rx<String>? username;
+  late final BehaviorSubject<String> username;
+  late final BehaviorSubject<String> imageUrl;
 
-  Rx<String>? id;
+  @override
+  List<Object?> get props => [username, imageUrl];
 }

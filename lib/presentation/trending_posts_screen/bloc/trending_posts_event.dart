@@ -1,21 +1,32 @@
-part of 'trending_posts_event.dart';
+import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
-/// Abstract class for all events that can be dispatched from the
+@immutable
+abstract class TrendingPostsEvent extends Equatable {
+  const TrendingPostsEvent();
 
-///TrendingPosts widget.
-
-///
-
-/// Events must be immutable and implement the [Equatable] interface.
-
-class TrendingPostsEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
-/// Event that is dispatched when the TrendingPosts widget is first created.
+class LoadTrendingPosts extends TrendingPostsEvent {
+  final bool isRefresh;
 
-class TrendingPostsInitialEvent extends TrendingPostsEvent {
+  const LoadTrendingPosts({this.isRefresh = false});
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [isRefresh];
+}
+
+class RefreshTrendingPosts extends TrendingPostsEvent {}
+
+class LoadMoreTrendingPosts extends TrendingPostsEvent {}
+
+class TrendingPostsError extends TrendingPostsEvent {
+  final String message;
+
+  const TrendingPostsError(this.message);
+
+  @override
+  List<Object?> get props => [message];
 }

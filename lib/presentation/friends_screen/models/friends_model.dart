@@ -11,9 +11,11 @@ import 'friendslist_item_model.dart';
 class FriendsModel extends Equatable {
   FriendsModel({this.friendslistItemList = const []});
 
-  List<FriendslistItemModel> friendslistItemList;
+  final List<FriendslistItemModel> friendslistItemList;
 
-  FriendsModel copywith({List<FriendslistItemModel>? friendslistItemList}) {
+  FriendsModel copyWith({
+    List<FriendslistItemModel>? friendslistItemList,
+  }) {
     return FriendsModel(
       friendslistItemList: friendslistItemList ?? this.friendslistItemList,
     );

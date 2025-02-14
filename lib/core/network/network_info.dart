@@ -2,44 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:miswan_s_application3/main.dart';
 
-// For checking internet connectivity
+/// Abstract class defining network information interface
+/// Provides methods to check connectivity status
 abstract class NetworkInfoI {
+  /// Checks if device has active internet connection
   Future<bool> isConnected();
-  Future<List<ConnectivityResult>> get connectivityResult;
-  Stream<List<ConnectivityResult>> get onConnectivityChanged;
+
+  /// Gets current connectivity status
+  Future<ConnectivityResult> get connectivityResult;
+
+  /// Stream of connectivity status changes
+  Stream<ConnectivityResult> get onConnectivityChanged;
 }
 
 class NetworkInfo implements NetworkInfoI {
-  Connectivity connectivity;
+  final Connectivity connectivity;
 
   static final NetworkInfo _networkInfo = NetworkInfo._internal(Connectivity());
 
-  factory NetworkInfo() {
-    return _networkInfo;
-  }
+  factory NetworkInfo() => _networkInfo;
 
-  NetworkInfo._internal(this.connectivity) {
-    connectivity = this.connectivity;
-  }
+  NetworkInfo._internal(this.connectivity);
 
-  ///checks internet is connected or not
-  ///returns [true] if internet is connected
-  ///else it will return [false]
   @override
   Future<bool> isConnected() async {
     final result = await connectivityResult;
-    return !result.contains(ConnectivityResult.none);
+    return result != ConnectivityResult.none;
   }
 
-  // to check type of internet connectivity
   @override
-  Future<List<ConnectivityResult>> get connectivityResult async {
-    return connectivity.checkConnectivity();
-  }
+  Future<ConnectivityResult> get connectivityResult =>
+      connectivity.checkConnectivity();
 
-  //check the type on internet connection on changed of internet connection
   @override
-  Stream<List<ConnectivityResult>> get onConnectivityChanged =>
+  Stream<ConnectivityResult> get onConnectivityChanged =>
       connectivity.onConnectivityChanged;
 }
 
@@ -52,26 +48,23 @@ class CacheFailure extends Failure {}
 
 class NetworkFailure extends Failure {}
 
+// Exception classes
 class ServerException implements Exception {}
 
 class CacheException implements Exception {}
 
 class NetworkException implements Exception {}
 
-///can be used for throwing [NoInternetException]
 class NoInternetException implements Exception {
-  late String _message;
+  final String message;
 
-  NoInternetException([String message = 'NoInternetException Occurred']) {
+  NoInternetException([this.message = 'No internet connection available']) {
     if (globalMessengerKey.currentState != null) {
       globalMessengerKey.currentState!
           .showSnackBar(SnackBar(content: Text(message)));
-      this._message = message;
     }
   }
 
   @override
-  String toString() {
-    return _message;
-  }
+  String toString() => message;
 }

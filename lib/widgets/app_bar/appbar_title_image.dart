@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_export.dart';
 
-class AppbarTitleImage extends Statelesswidget {
+class AppbarTitleImage extends StatelessWidget {
   AppbarTitleImage(
       {Key? key,
       this.imagePath,
@@ -28,12 +28,12 @@ class AppbarTitleImage extends Statelesswidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
-      child: Inkwell(
+      child: InkWell(
         onTap: () {
           onTap?.call();
         },
         child: SizedBox(
-          width: double.maxFinite,
+          width: width ?? 24.h,
           child: CustomImageView(
             imagePath: imagePath!,
             height: height ?? 24.h,

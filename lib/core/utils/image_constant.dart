@@ -83,4 +83,14 @@ class ImageConstant {
 
   // Account View images
   static String imgRectangle3809 = '$imagePath/img_rectangle_3809.png';
+
+  // Friends screen images
+  static String imgArrowBackDeepPurpleA200 =
+      "assets/images/arrow_back_purple.png";
+  static String imgPersonAddAlt1 = "assets/images/person_add.png";
+  static String imgTrashBlue5001 = "assets/images/trash_blue.png";
+  static String imgFacebookBlueA4001 = "assets/images/facebook_blue.png";
+  static String imgThumbsUpYellowA200 = "assets/images/thumbs_up_yellow.png";
+  static String imgWarningRed700 = "assets/images/warning_red.png";
+  static String imgTrash = "assets/images/trash.png";
 }

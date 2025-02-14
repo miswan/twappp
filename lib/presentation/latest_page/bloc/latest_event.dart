@@ -1,27 +1,13 @@
-part of 'latest_event.dart';
+part of 'latest_bloc.dart';
 
-/// Abstract class for all events that can be dispatched from the
+abstract class LatestEvent extends Equatable {
+  const LatestEvent();
 
-///Latest widget.
-
-///
-
-/// Events must be immutable and implement the [Equatable] interface.
-
-class LatestEvent extends Equatable {
-
-@override
-
-List<Object?> get props [];
-
+  @override
+  List<Object?> get props => [];
 }
 
-/// Event that is dispatched when the Latest widget is first created.
-
 class LatestInitialEvent extends LatestEvent {
-
-@override
-
-List<Object?> get props [];
-
+  @override
+  List<Object?> get props => [];
 }

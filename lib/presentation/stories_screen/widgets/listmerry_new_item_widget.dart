@@ -4,15 +4,11 @@ import '../../../core/app_export.dart';
 
 import '../models/listmerry_new_item_model.dart';
 
-// ignore_for_file: must_be_immutable
+class ListmerryNewItemWidget extends StatelessWidget {
+  const ListmerryNewItemWidget(this.listmerryNewItemModelObj, {Key? key})
+      : super(key: key);
 
-class ListmerryNewItemWidget extends Statelesswidget {
-  ListmerryNewItemWidget(this.listmerryNewItemModelObj, {Key? key})
-      : super(
-          key: key,
-        );
-
-  ListmerryNewItemModel listmerryNewItemModelobj;
+  final ListmerryNewItemModel listmerryNewItemModelObj;
 
   @override
   Widget build(BuildContext context) {

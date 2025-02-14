@@ -18,57 +18,18 @@ import '../presentation/stories_and_tweets_screen/stories_and_tweets_screen.dart
 import '../presentation/stories_screen/stories_screen.dart';
 import '../presentation/trending_posts_screen/trending_posts_screen.dart';
 import '../presentation/turn_on_notifications_screen/turn_on_notifications_screen.dart';
+import '../presentation/latest/latest_page.dart';
+import '../presentation/discover/discover_page.dart';
+import '../presentation/daily_new/daily_new_page.dart';
+import '../presentation/trending_tab/trending_tab_page.dart';
+import '../presentation/notifications/notifications_page.dart';
+import '../presentation/profile/profile_page.dart';
+import '../presentation/streaming/streaming_page.dart';
 
 class AppRoutes {
-  static const String splashScreen = '/splash_screen';
-  static const String onboardingOneScreen = '/onboarding_one_screen';
-  static const String logInScreen = '/log_in_screen';
-  static const String forgotPasswordScreen = '/forgot_password_screen';
-  static const String signUpScreen = '/sign_up_screen';
-  static const String turnOnNotificationsScreen =
-      '/turn_on_notifications_screen';
-  static const String inviteFriendsScreen = '/invite_friends_screen';
-  static const String latestPage = '/latest_page';
-  static const String discoverPage = '/discover_page';
-  static const String dailyNewPage = '/daily_new_page';
-  static const String trendingPostsScreen = '/trending_posts_screen';
-  static const String trendingPostsInitialPage = '/trending_posts_initial_page';
-  static const String trendingTabPage = '/trending_tab_page';
-  static const String storiesScreen = '/stories_screen';
-  static const String storiesAndTweetsScreen = '/stories_and_tweets_screen';
-  static const String searchScreen = '/search_screen';
-  static const String liveScreen = '/live_screen';
-  static const String forYouScreen = '/for_you_screen';
-  static const String pageViewScreen = '/page_view_screen';
-  static const String accountViewScreen = '/account_view_screen';
-  static const String accountDetailsScreen = '/account_details_screen';
-  static const String friendsScreen = '/friends_screen';
-  static const String notificationsPage = '/notifications_page';
-  static const String profilePage = '/profile_page';
-  static const String detailedProfileScreen = '/detailed_profile_screen';
-  static const String streamingPage = '/streaming_page';
-  static const String appNavigationScreen = '/app_navigation_screen';
-  static const String initialRoute = '/initialRoute';
+  static const String initialRoute = '/';
 
-  static Map<String, WidgetBuilder> get routes => {
-        splashScreen: (context) => SplashScreen(),
-        onboardingOneScreen: (context) => OnboardingOneScreen(),
-        logInScreen: (context) => LogInScreen(),
-        forgotPasswordScreen: (context) => ForgotPasswordScreen(),
-        signUpScreen: (context) => SignUpScreen(),
-        turnOnNotificationsScreen: (context) => TurnOnNotificationsScreen(),
-        inviteFriendsScreen: (context) => InviteFriendsScreen(),
-        trendingPostsScreen: (context) => TrendingPostsScreen(),
-        storiesScreen: (context) => StoriesScreen(),
-        storiesAndTweetsScreen: (context) => StoriesAndTweetsScreen(),
-        searchScreen: (context) => SearchScreen(),
-        forYouScreen: (context) => ForYouScreen(),
-        pageViewScreen: (context) => PageViewScreen(),
-        accountViewScreen: (context) => AccountViewScreen(),
-        accountDetailsScreen: (context) => AccountDetailsScreen(),
-        friendsScreen: (context) => FriendsScreen(),
-        detailedProfileScreen: (context) => DetailedProfileScreen(),
-        appNavigationScreen: (context) => AppNavigationScreen(),
-        initialRoute: (context) => SplashScreen(),
-      };
+  static Map<String, WidgetBuilder> routes = {
+    initialRoute: (context) => Container(), // Replace with your initial screen
+  };
 }

@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+import 'turn_on_notifications_model.dart';
 
 part of 'turn_on_notifications_state.dart';
 
@@ -5,36 +7,27 @@ part of 'turn_on_notifications_state.dart';
 
 // ignore_for_file: must_be_immutable
 
-class TurnOnNotificationsstate extends Equatable {
+class TurnOnNotificationsState extends Equatable {
+  TurnOnNotificationsState({
+    this.isSelectedSwitch = false,
+    this.turnOnNotificationsModelObj,
+  });
 
-TurnOnNotificationsState(
+  TurnOnNotificationsModel? turnOnNotificationsModelObj;
 
-{this.isselectedSwitch = false, this.turnOnNotificationsModelObj});
+  bool isSelectedSwitch;
 
-TurnOnNotificationsModel? turnonNotificationsModelobj;
+  @override
+  List<Object?> get props => [isSelectedSwitch, turnOnNotificationsModelObj];
 
-bool isselectedSwitch;
-
-@override
-
-List<Object?> get props => [isSelectedSwitch, turnOnNotificationsModelObj];
-
-TurnOnNotificationsstate copywith({
-
-bool? isselectedSwitch,
-
-TurnOnNotificationsModel? turnonNotificationsModelObj,
-
-}) {
-
-return TurnOnNotificationsState(
-
-isselectedSwitch: isSelectedSwitch ?? this.isselectedSwitch,
-
-turnonNotificationsModelObj:
-
-turnonNotificationsModelobj ?? this.turnOnNotificationsModelObj,
-
-);
-
+  TurnOnNotificationsState copyWith({
+    bool? isSelectedSwitch,
+    TurnOnNotificationsModel? turnOnNotificationsModelObj,
+  }) {
+    return TurnOnNotificationsState(
+      isSelectedSwitch: isSelectedSwitch ?? this.isSelectedSwitch,
+      turnOnNotificationsModelObj:
+          turnOnNotificationsModelObj ?? this.turnOnNotificationsModelObj,
+    );
+  }
 }

@@ -6,14 +6,40 @@ import '../core/app_export.dart';
 extension TextFormFieldstyleHelper on CustomTextFormField {
 
 static OutlineInputBorder get fillGray => OutlineInputBorder(
-
+  borderRadius: BorderRadius.circular(24.h),
+  borderSide: BorderSide.none,
 );
-
-borderRadius: BorderRadius.circular(24.h), borderSide: BorderSide.none,
 
 class CustomTextFormField extends StatelessWidget {
 
-CustomTextFormField( this.scrollPadding, this.autofocus = false, this.textstyle, this.obscureText false, this.readonly = false, this.onTap, this.maxLines, this.hintText, this.hintstyle, this.contentPadding, this.fillcolor, super( );
+CustomTextFormField({
+  Key? key,
+  this.scrollPadding,
+  this.autofocus = false,
+  this.textstyle,
+  this.obscureText = false,
+  this.readonly = false,
+  this.onTap,
+  this.maxLines,
+  this.hintText,
+  this.hintstyle,
+  this.contentPadding,
+  this.fillcolor,
+  this.alignment,
+  this.width,
+  this.boxDecoration,
+  this.controller,
+  this.focusNode,
+  this.textInputAction = TextInputAction.next,
+  this.textInputType = TextInputType.text,
+  this.prefix,
+  this.prefixConstraints,
+  this.suffix,
+  this.suffixConstraints,
+  this.borderDecoration,
+  this.filled = true,
+  this.validator,
+}) : super(key: key);
 
 {Key? key,
 

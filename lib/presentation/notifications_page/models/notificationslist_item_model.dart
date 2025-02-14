@@ -1,24 +1,30 @@
 import '../../../core/app_export.dart';
+import 'package:equatable/equatable.dart';
 
 /// This class is used in the [notificationslist_item_widget] screen.
-class NotificationslistItemModel {
+class NotificationslistItemModel extends Equatable {
+  final String? image;
+  final String? kevinhas;
+  final String? duration;
+
   NotificationslistItemModel({
-    this.userImage,
-    this.kevinHasFollowed,
+    this.image,
+    this.kevinhas,
     this.duration,
-    this.id,
+  });
+
+  NotificationslistItemModel copyWith({
+    String? image,
+    String? kevinhas,
+    String? duration,
   }) {
-    userImage = userImage ?? Rx(ImageConstant.imgEllipse22);
-    kevinHasFollowed = kevinHasFollowed ?? Rx("Kevin has followed you");
-    duration = duration ?? Rx("1 hour ago");
-    id = id ?? Rx("");
+    return NotificationslistItemModel(
+      image: image ?? this.image,
+      kevinhas: kevinhas ?? this.kevinhas,
+      duration: duration ?? this.duration,
+    );
   }
 
-  Rx<String>? userImage;
-
-  Rx<String>? kevinHasFollowed;
-
-  Rx<String>? duration;
-
-  Rx<String>? id;
+  @override
+  List<Object?> get props => [image, kevinhas, duration];
 }

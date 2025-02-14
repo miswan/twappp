@@ -1,39 +1,42 @@
-part of 'log_in_state.dart';
-
-/// Represents the state of LogIn in the application.
-
-// ignore_for_file: must_be_immutable
+part of 'log_in_bloc.dart';
 
 class LogInState extends Equatable {
-  LogInState(
-      {this.emailcontroller,
-      this.passwordController,
-      this.isShowPassword = true,
-      this.logInModelobj});
+  final TextEditingController? emailcontroller;
+  final TextEditingController? passwordController;
+  final bool isShowPassword;
+  final bool isLoading;
+  final String? error;
 
-  TextEditingController? emailcontroller;
-
-  TextEditingController? passwordController;
-
-  LogInModel? logInModelObj;
-
-  bool isShowPassword;
-
-  @override
-  List<Object?> get props =>
-      [emailcontroller, passwordController, isShowPassword, logInModelobj];
+  const LogInState({
+    this.emailcontroller,
+    this.passwordController,
+    this.isShowPassword = true,
+    this.isLoading = false,
+    this.error,
+  });
 
   LogInState copywith({
     TextEditingController? emailcontroller,
     TextEditingController? passwordController,
     bool? isShowPassword,
-    LogInModel? logInModelobj,
+    bool? isLoading,
+    String? error,
   }) {
     return LogInState(
       emailcontroller: emailcontroller ?? this.emailcontroller,
       passwordController: passwordController ?? this.passwordController,
       isShowPassword: isShowPassword ?? this.isShowPassword,
-      logInModelobj: logInModelobj ?? this.logInModelObj,
+      isLoading: isLoading ?? this.isLoading,
+      error: error,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        emailcontroller,
+        passwordController,
+        isShowPassword,
+        isLoading,
+        error,
+      ];
 }

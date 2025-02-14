@@ -1,26 +1,30 @@
-part of 'streaming_state.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import '../models/streaming_model.dart';
 
-/// Represents the state of Streaming in the application.
-
-// ignore_for_file: must_be_immutable
+part of 'streaming_bloc.dart';
 
 class StreamingState extends Equatable {
-  StreamingState({this.searchController, this.streamingModelObj});
+  final TextEditingController? searchController;
+  final StreamingModel? streamingModelObj;
 
-  TextEditingController? searchController;
+  const StreamingState({
+    this.searchController,
+    this.streamingModelObj,
+  });
 
-  StreamingModel? streamingModelobj;
-
-  @override
-  List<Object?> get props => [searchController, streamingModelobj];
-
-  StreamingState copywith({
+  StreamingState copyWith({
     TextEditingController? searchController,
-    StreamingModel? streamingModelobj,
+    StreamingModel? streamingModelObj,
   }) {
     return StreamingState(
       searchController: searchController ?? this.searchController,
-      streamingModelobj: streamingModelobj ?? this.streamingModelObj,
+      streamingModelObj: streamingModelObj ?? this.streamingModelObj,
     );
   }
+
+  @override
+  List<Object?> get props => [searchController, streamingModelObj];
 }
+
+class StreamingInitial extends StreamingState {}

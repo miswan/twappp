@@ -8,9 +8,9 @@ import 'accountcounts_item_model.dart';
 // ignore_for_file: must_be_immutable
 
 class AccountViewModel extends Equatable {
-  AccountViewModel({this.accountcountsItemList = const []});
+  final List<AccountcountsItemModel>? accountcountsItemList;
 
-  List<AccountcountsItemModel> accountcountsItemList;
+  const AccountViewModel({this.accountcountsItemList});
 
   AccountViewModel copywith(
       {List<AccountcountsItemModel>? accountcountsItemList}) {

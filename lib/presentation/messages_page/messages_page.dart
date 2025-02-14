@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/messages_bloc.dart';
 import '../messages_page/widgets/userprofile4_item_widget.dart';
 import '../messages_page/widgets/userprofile5_item_widget.dart';
 import 'controller/messages_controller.dart';
@@ -11,44 +13,21 @@ import 'package:miswan_s_application3/widgets/app_bar/appbar_trailing_image.dart
 import 'package:miswan_s_application3/widgets/app_bar/custom_app_bar.dart';
 
 class MessagesPage extends StatelessWidget {
-  final MessagesController controller = Get.put(
-      MessagesController(MessagesModel().obs)); // Made 'controller' final
-
-  MessagesPage({Key? key})
-      : super(
-          key: key,
-        );
+  MessagesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: _buildAppBar(),
-        body: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(vertical: 25.v),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 16.h),
-                child: Text(
-                  "lbl_messages".tr,
-                  style: theme.textTheme.headlineLarge,
-                ),
-              ),
-              SizedBox(height: 17.v),
-              _buildUserProfile(),
-              SizedBox(height: 22.v),
-              _buildUserProfile1(),
-            ],
-          ),
+    return BlocProvider(
+      create: (context) => MessagesBloc()..add(LoadMessages()),
+      child: SafeArea(
+        child: Scaffold(
+          appBar: _buildAppBar(),
+          body: _buildBody(),
         ),
       ),
     );
   }
 
-  /// Section Widget
   PreferredSizeWidget _buildAppBar() {
     return CustomAppBar(
       leadingWidth: 40.h,
@@ -72,71 +51,81 @@ class MessagesPage extends StatelessWidget {
     );
   }
 
-  /// Section Widget
-  Widget _buildUserProfile() {
+  Widget _buildBody() {
+    return BlocBuilder<MessagesBloc, MessagesState>(
+      builder: (context, state) {
+        if (state is MessagesLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+        if (state is MessagesError) {
+          return Center(child: Text(state.message));
+        }
+        if (state is MessagesLoaded) {
+          return Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 25.v),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 16.h),
+                  child: Text(
+                    "lbl_messages".tr,
+                    style: theme.textTheme.headlineLarge,
+                  ),
+                ),
+                SizedBox(height: 17.v),
+                _buildUserProfile(state.stories),
+                SizedBox(height: 22.v),
+                _buildUserProfile1(state.messages),
+              ],
+            ),
+          );
+        }
+        return SizedBox();
+      },
+    );
+  }
+
+  Widget _buildUserProfile(List<Userprofile4ItemModel> stories) {
     return Align(
       alignment: Alignment.centerRight,
       child: SizedBox(
         height: 82.v,
-        child: Obx(
-          () => ListView.separated(
-            padding: EdgeInsets.only(left: 16.h),
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (
-              context,
-              index,
-            ) {
-              return SizedBox(
-                width: 20.h,
-              );
-            },
-            itemCount: controller
-                .messagesModelObj.value.userprofile4ItemList.value.length,
-            itemBuilder: (context, index) {
-              Userprofile4ItemModel model = controller
-                  .messagesModelObj.value.userprofile4ItemList.value[index];
-              return Userprofile4ItemWidget(
-                model,
-              );
-            },
-          ),
+        child: ListView.separated(
+          padding: EdgeInsets.only(left: 16.h),
+          scrollDirection: Axis.horizontal,
+          separatorBuilder: (context, index) => SizedBox(width: 20.h),
+          itemCount: stories.length,
+          itemBuilder: (context, index) {
+            return Userprofile4ItemWidget(stories[index]);
+          },
         ),
       ),
     );
   }
 
-  /// Section Widget
-  Widget _buildUserProfile1() {
-    return Obx(
-      () => ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        separatorBuilder: (
-          context,
-          index,
-        ) {
-          return Padding(
-            padding: EdgeInsets.symmetric(vertical: 13.0.v),
-            child: SizedBox(
-              width: double.maxFinite,
-              child: Divider(
-                height: 2.v,
-                thickness: 2.v,
-                color: appTheme.deepPurple50,
-              ),
+  Widget _buildUserProfile1(List<Userprofile5ItemModel> messages) {
+    return ListView.separated(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      separatorBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 13.0.v),
+          child: SizedBox(
+            width: double.maxFinite,
+            child: Divider(
+              height: 2.v,
+              thickness: 2.v,
+              color: appTheme.deepPurple50,
             ),
-          );
-        },
-        itemCount:
-            controller.messagesModelObj.value.userprofile5ItemList.value.length,
-        itemBuilder: (context, index) {
-          Userprofile5ItemModel model = controller
-              .messagesModelObj.value.userprofile5ItemList.value[index];
-          return Userprofile5ItemWidget(
-            model,
-          );
-        },
-      ),
+          ),
+        );
+      },
+      itemCount: messages.length,
+      itemBuilder: (context, index) {
+        return Userprofile5ItemWidget(messages[index]);
+      },
     );
   }
 }

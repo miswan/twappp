@@ -1,20 +1,16 @@
-part of 'daily_new_state.dart';
-
-/// Represents the state of DailyNew in the application.
-
-// ignore_for_file: must_be_immutable
+part of 'daily_new_bloc.dart';
 
 class DailyNewState extends Equatable {
-  DailyNewState({this.dailyNewModelobj});
+  final DailyNewModel? dailyNewModelObj;
 
-  DailyNewModel? dailyNewModelobj;
+  const DailyNewState({this.dailyNewModelObj});
 
   @override
-  List<Object?> get props => [dailyNewModelobj];
+  List<Object?> get props => [dailyNewModelObj];
 
-  DailyNewState copywith({DailyNewModel? dailyNewModelobj}) {
+  DailyNewState copyWith({DailyNewModel? dailyNewModelObj}) {
     return DailyNewState(
-      dailyNewModelobj: dailyNewModelobj ?? this.dailyNewModelobj,
+      dailyNewModelObj: dailyNewModelObj ?? this.dailyNewModelObj,
     );
   }
 }

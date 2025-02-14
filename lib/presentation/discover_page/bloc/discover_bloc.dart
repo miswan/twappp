@@ -11,7 +11,7 @@ part 'discover_state.dart';
 /// A bloc that manages the state of a Discover according to the event that is dispatched to it.
 
 class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
-  DiscoverBloc(DiscoverState initialState) : super(initialState) {
+  DiscoverBloc() : super(DiscoverState(discoverModelObj: DiscoverModel())) {
     on<DiscoverInitialEvent>(_onInitialize);
   }
 

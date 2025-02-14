@@ -1,29 +1,20 @@
-entation for_you_screen > bloc 
-
-part of 'for_you_state.dart';
-
-/// Represents the state of ForYou in the application.
-
-// ignore_for_file: must_be_immutable
+part of 'for_you_bloc.dart';
 
 class ForYouState extends Equatable {
+  final ForYouModel? forYouModelObj;
 
-ForYouState({this.forYouModelObj});
+  const ForYouState({
+    this.forYouModelObj,
+  });
 
-ForYouModel? forYouModelobj;
+  ForYouState copyWith({
+    ForYouModel? forYouModelObj,
+  }) {
+    return ForYouState(
+      forYouModelObj: forYouModelObj ?? this.forYouModelObj,
+    );
+  }
 
-@override
-
-List<Object?> get props => [forYouModelobj];
-
-ForYouState copywith({ForYouModel? forYouModelobj}) {
-
-return ForYouState(
-
-forYouModelobj: forYouModelobj ?? this.forYouModelobj,
-
-);
-
-}
-
+  @override
+  List<Object?> get props => [forYouModelObj];
 }

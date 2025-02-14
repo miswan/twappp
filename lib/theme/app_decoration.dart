@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'theme_helper.dart';
 
 import '../core/app_export.dart';
 
@@ -6,6 +8,10 @@ class AppDecoration {
   // Fill decorations
   static BoxDecoration get fillOnPrimary => BoxDecoration(
         color: theme.colorscheme.onPrimary,
+      );
+
+  static BoxDecoration get fillGray => BoxDecoration(
+        color: appTheme.gray50,
       );
 
   // Linear decorations
@@ -22,6 +28,13 @@ class AppDecoration {
         border: Border.all(
           color: appTheme.deepPurpleA200,
           width: 2.h,
+        ),
+      );
+
+  static BoxDecoration get outlineGray => BoxDecoration(
+        border: Border.all(
+          color: appTheme.gray50,
+          width: 1.h,
         ),
       );
 
@@ -64,4 +77,12 @@ class BorderRadiusStyle {
   static BorderRadius get roundedBorder14 => BorderRadius.circular(14.h);
   static BorderRadius get roundedBorder24 => BorderRadius.circular(24.h);
   static BorderRadius get roundedBorder5 => BorderRadius.circular(5.h);
+}
+
+class CustomTextStyles {
+  static TextStyle get titleLargeDeeppurpleA200 => TextStyle(
+        color: appTheme.deepPurpleA200,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+      );
 }

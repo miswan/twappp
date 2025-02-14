@@ -1,20 +1,15 @@
-part of 'turn_on_notifications_event.dart';
+import 'package:equatable/equatable.dart';
 
-/// Abstract class for all events that can be dispatched from the
+part 'turn_on_notifications_event.g.dart';
 
-///TurnOnNotifications widget.
+abstract class TurnOnNotificationsEvent extends Equatable {
+  const TurnOnNotificationsEvent();
 
-///
-
-/// Events must be immutable and implement the [Equatable] interface.
-
-class TurnOnNotificationsEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
 
 /// Event that is dispatched when the TurnOnNotifications widget is first created.
-
 class TurnOnNotificationsInitialEvent extends TurnOnNotificationsEvent {
   @override
   List<Object?> get props => [];

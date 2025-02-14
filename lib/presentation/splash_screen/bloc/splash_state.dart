@@ -1,26 +1,14 @@
-
-part of 'splash_state.dart';
-
-/// Represents the state of Splash in the application.
-
-// ignore_for_file: must_be_immutable
+part of 'splash_bloc.dart';
 
 class Splashstate extends Equatable {
+  final SplashModel? splashModelObj;
 
-SplashState({this.splashModelobj});
+  const Splashstate({this.splashModelObj});
 
-SplashModel? splashModelobj;
+  @override
+  List<Object?> get props => [splashModelObj];
 
-@override
-
-List<Object?> get props => [splashModelobj];
-
-Splashstate copywith({SplashModel? splashModelObj}) {
-
-return Splashstate(
-
-splashModelObj: splashModelobj ?? this.splashModelobj,
-
-);
-
+  Splashstate copyWith({SplashModel? splashModelObj}) {
+    return Splashstate(splashModelObj: splashModelObj ?? this.splashModelObj);
+  }
 }

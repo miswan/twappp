@@ -15,8 +15,18 @@ class DetailedProfileBloc
     on<DetailedProfileInitialEvent>(_onInitialize);
   }
 
-  void _onInitialize(
+  _onInitialize(
     DetailedProfileInitialEvent event,
     Emitter<DetailedProfileState> emit,
-  ) async {}
+  ) async {
+    emit(state.copyWith(
+      detailedProfileModelObj: DetailedProfileModel(
+        username: "Rosalia",
+        email: "xyz@gmail.com",
+        phone: "12-3456-789-000",
+        gender: "Female",
+        dateOfBirth: "21-08-1992",
+      ),
+    ));
+  }
 }

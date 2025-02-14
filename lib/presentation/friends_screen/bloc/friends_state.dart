@@ -1,26 +1,21 @@
-part of 'friends_state.dart';
+part of 'friends_bloc.dart';
 
-/// Represents the state of Friends in the application.
+class FriendsState {
+  final FriendsModel? friendsModelObj;
+  final TextEditingController? searchController;
 
-// ignore_for_file: must_be_immutable
+  FriendsState({
+    this.friendsModelObj,
+    this.searchController,
+  });
 
-class Friendsstate extends Equatable {
-  Friendsstate({this.searchController, this.friendsModelobj});
-
-  TextEditingController? searchController;
-
-  FriendsModel? friendsModelobj;
-
-  @override
-  List<Object?> get props => [searchController, friendsModelObj];
-
-  Friendsstate copywith({
+  FriendsState copyWith({
+    FriendsModel? friendsModelObj,
     TextEditingController? searchController,
-    FriendsModel? friendsModelobj,
   }) {
-    return Friendsstate(
+    return FriendsState(
+      friendsModelObj: friendsModelObj ?? this.friendsModelObj,
       searchController: searchController ?? this.searchController,
-      friendsModelobj: friendsModelobj ?? this.friendsModelobj,
     );
   }
 }

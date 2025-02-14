@@ -1,20 +1,20 @@
-part of 'latest_state.dart';
+part of 'latest_bloc.dart';
 
-/// Represents the state of Latest in the application.
+class LatestState extends Equatable {
+  final LatestModel? latestModelObj;
 
-// ignore_for_file: must_be_immutable
+  const LatestState({
+    this.latestModelObj,
+  });
 
-class Lateststate extends Equatable {
-  LatestState({this.latestModelobj});
-
-  LatestModel? latestModelobj;
-
-  @override
-  List<Object?> get props => [latestModelobj];
-
-  Lateststate copywith({LatestModel? latestModelObj}) {
+  LatestState copyWith({
+    LatestModel? latestModelObj,
+  }) {
     return LatestState(
-      latestModelObj: latestModelobj ?? this.latestModelobj,
+      latestModelObj: latestModelObj ?? this.latestModelObj,
     );
   }
+
+  @override
+  List<Object?> get props => [latestModelObj];
 }

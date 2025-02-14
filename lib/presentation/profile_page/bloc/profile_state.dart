@@ -1,24 +1,16 @@
+part of 'profile_bloc.dart';
 
-part of 'profile_state.dart';
+class ProfileState extends Equatable {
+  final ProfileModel? profileModelObj;
 
-/// Represents the state of Profile in the application.
+  const ProfileState({this.profileModelObj});
 
-// ignore_for_file: must_be_immutable
+  ProfileState copyWith({ProfileModel? profileModelObj}) {
+    return ProfileState(
+      profileModelObj: profileModelObj ?? this.profileModelObj,
+    );
+  }
 
-class Profilestate extends Equatable {
-
-ProfileState({this.profileModelobj});
-
-ProfileModel? profileModelobj;
-
-@override
-
-List<Object?> get props => [profileModelobj];
-
-Profilestate copywith({ProfileModel? profileModelobj}) {
-
-return ProfileState(
-
-profileModelobj: profileModelobj ?? this.profileModelobj,
-
-);
+  @override
+  List<Object?> get props => [profileModelObj];
+}

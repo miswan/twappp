@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../core/app_export.dart';
 import '../models/account_view_model.dart';
 import '../models/accountcounts_item_model.dart';
 
@@ -9,18 +9,20 @@ part 'account_view_state.dart';
 
 /// A bloc that manages the state of a AccountView according to the event that is dispatched to it.
 class AccountViewBloc extends Bloc<AccountViewEvent, AccountViewState> {
-  AccountViewBloc(AccountViewState initialstate) : super(initialstate) {
+  AccountViewBloc()
+      : super(AccountViewState(accountViewModelobj: AccountViewModel())) {
     on<AccountViewInitialEvent>(_onInitialize);
   }
 
-  _onInitialize(
+  void _onInitialize(
     AccountViewInitialEvent event,
     Emitter<AccountViewState> emit,
-  ) async {
+  ) {
+    final accountcounts = fillAccountcountsItemList();
     emit(
       state.copywith(
-        accountViewModelobj: state.accountViewModelobj?.copywith(
-          accountcountsItemList: fillAccountcountsItemList(),
+        accountViewModelobj: AccountViewModel(
+          accountcountsItemList: accountcounts,
         ),
       ),
     );

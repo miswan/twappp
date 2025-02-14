@@ -1,6 +1,10 @@
 /.dart_tool/
+/.dhiwise/
 /.idea/
 /build/
+/linux/
+/macos/
+/.idx/
 /.vscode/
 !/pubspec.lock
 !/.packages

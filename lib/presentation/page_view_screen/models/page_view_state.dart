@@ -1,36 +1,33 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+import 'package:twappp/presentation/page_view_screen/models/page_view_model.dart';
 
-part of 'page_view_state.dart';
+part 'page_view_state.g.dart';
 
 /// Represents the state of PageView in the application.
-
 // ignore_for_file: must_be_immutable
-
 class PageViewState extends Equatable {
+  PageViewState({
+    this.commentController,
+    this.pageViewModelobj,
+  });
 
-PageViewState({this.commentController, this.pageViewModelobj});
+  TextEditingController? commentController;
+  PageViewModel? pageViewModelobj;
 
-TextEditingController? commentController;
+  @override
+  List<Object?> get props => [
+        commentController,
+        pageViewModelobj,
+      ];
 
-PageViewModel? pageViewModelobj;
-
-@override
-
-List<Object?> get props => [commentController, pageViewModelobj];
-
-PageViewState copywith({
-
-TextEditingController? commentController,
-
-PageViewModel? pageViewModelobj,
-
-}) {
-
-return PageViewState(
-
-commentController: commentController ?? this.commentController,
-
-pageViewModelobj: pageViewModelobj ?? this.pageViewModelobj,
-
-);
-
+  PageViewState copyWith({
+    TextEditingController? commentController,
+    PageViewModel? pageViewModelobj,
+  }) {
+    return PageViewState(
+      commentController: commentController ?? this.commentController,
+      pageViewModelobj: pageViewModelobj ?? this.pageViewModelobj,
+    );
+  }
 }

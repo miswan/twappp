@@ -1,14 +1,16 @@
-part of 'theme_state.dart';
+part of 'theme_bloc.dart';
 
-class Themestate extends Equatable {
-  ThemeState({required this.themeType});
+class ThemeState extends Equatable {
+  final AppTheme themeType;
 
-  final String themeType;
+  const ThemeState({required this.themeType});
+
+  ThemeState copyWith({AppTheme? themeType}) {
+    return ThemeState(
+      themeType: themeType ?? this.themeType,
+    );
+  }
 
   @override
-  List<Object?> get props => [themeType];
-
-  Themestate copywith({string? themeType}) {
-    return ThemeState(themeType: themeType ?? this.themeType);
-  }
+  List<Object> get props => [themeType];
 }

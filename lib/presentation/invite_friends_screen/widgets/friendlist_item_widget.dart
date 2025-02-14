@@ -1,101 +1,57 @@
 import 'package:flutter/material.dart';
-
 import '../../../core/app_export.dart';
-
-import '../../../widgets/custom_checkbox_button.dart';
-
 import '../models/friendlist_item_model.dart';
 
-// ignore_for_file: must_be_immutable
-
 class FriendlistItemWidget extends StatelessWidget {
+  final FriendlistItemModel model;
+  final Function(bool) changeCheckBox;
 
-FriendlistItemWidget(this.friendlistItemModelObj,
+  const FriendlistItemWidget(
+    this.model, {
+    required this.changeCheckBox,
+  });
 
-{Key? key, this.changeCheckBox})
-
-: super(
-
-);
-
-key: key,
-
-FriendlistItemModel friendlistItemModelobj;
-
-Function(bool)? changeCheckBox;
-
-@override
-
-Widget build(BuildContext context) {
-
-return Row(
-
-mainAxisAlignment: MainAxisAlignment.center,
-
-children: [
-
-CustomImageView(
-
-),
-
-imagePath: friendlistItemModelObj.kevinAllsrub!,
-
-height: 50.h,
-
-width: 50.h,
-
-radius: BorderRadius.circular(
-
-),
-
-24.h,
-
-SizedBox(width: 24.h),
-
-Expanded(
-
-child: Column(
-
-crossAxisAlignment: CrossAxisAlignment.start,
-
-children: [
-
-Text(
-
-), friendlistItemModelObj.kevinallsrub1!, style: theme.textTheme.titleLarge,
-
-SizedBox(height: 4.h),
-
-Text(
-
-friendlistItemModelObj.yourefriends!, )
-
-style: CustomTextStyles.bodyMediumGray500,
-
-],
-
-),
-
-),
-
-SizedBox(width: 24.h),
-
-CustomCheckboxButton(
-
-value: friendlistItemModelObj.checkmark!,
-
-onChange: (value) {
-
-changeCheckBox?.call(value!);
-
-},
-
-)
-
-],
-
-);
-
-}
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 8.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              CustomImageView(
+                imagePath: model.kevinAllsrub,
+                height: 50.adaptSize,
+                width: 50.adaptSize,
+                radius: BorderRadius.circular(25.h),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 16.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      model.kevinallsrub1 ?? "",
+                      style: theme.textTheme.titleMedium,
+                    ),
+                    SizedBox(height: 4.v),
+                    Text(
+                      model.yourefriends ?? "",
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Checkbox(
+            value: model.checkmark ?? false,
+            onChanged: (value) => changeCheckBox(value ?? false),
+            activeColor: theme.colorScheme.primary,
+          ),
+        ],
+      ),
+    );
+  }
 }
