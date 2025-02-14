@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:miswan_s_application3/core/utils/navigator_service.dart';
 
 class ProgressDialogUtils {
   static bool isProgressVisible = false;
 
   ///common method for showing progress dialog
-
   static void showProgressDialog(
-      {BuildContext? context, bool iscancellable = false}) async {
+      {BuildContext? context, bool isCancellable = false}) async {
     if (!isProgressVisible &&
         NavigatorService.navigatorKey.currentState?.overlay?.context != null) {
       showDialog(
           barrierDismissible: isCancellable,
-          context: Navigatorservice.navigatorKey.currentState!.overlay!.context,
+          context: NavigatorService.navigatorKey.currentState!.overlay!.context,
           builder: (BuildContext context) {
             return Center(
               child: CircularProgressIndicator.adaptive(
@@ -30,7 +28,6 @@ class ProgressDialogUtils {
   }
 
   ///common method for hiding progress dialog
-
   static void hideProgressDialog() {
     if (isProgressVisible)
       Navigator.pop(

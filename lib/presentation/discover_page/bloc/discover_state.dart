@@ -1,4 +1,4 @@
-part of 'discover_state.dart';
+part of 'discover_bloc.dart';
 
 /// Represents the state of Discover in the application.
 
@@ -7,14 +7,14 @@ part of 'discover_state.dart';
 class DiscoverState extends Equatable {
   DiscoverState({this.discoverModelObj});
 
-  DiscoverModel? discoverModelobj;
+  DiscoverModel? discoverModelObj;
 
   @override
-  List<Object?> get props => [discoverModelobj];
+  List<Object?> get props => [discoverModelObj];
 
-  DiscoverState copywith({DiscoverModel? discoverModelobj}) {
-    return Discoverstate(
-      discoverModelobj: discoverModelobj ?? this.discoverModelobj,
+  DiscoverState copyWith({DiscoverModel? discoverModelObj}) {
+    return DiscoverState(
+      discoverModelObj: discoverModelObj ?? this.discoverModelObj,
     );
   }
 }

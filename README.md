@@ -18,6 +18,8 @@
 
 [Support] (#support)
 
+[How to Push Code to GitHub](#how-to-push-code-to-github)
+
 ### System requirements
 
 Dart SDK Version 3.4.0 or greater.
@@ -94,3 +96,32 @@ https://pub.dev/packages/cached_network_image
 ### Support
 
 If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/im
+
+### How to Push Code to GitHub
+
+1. **Initialize a Git repository** (if you haven't already):
+   ```sh
+   git init
+   ```
+
+2. **Add your files to the staging area**:
+   ```sh
+   git add .
+   ```
+
+3. **Commit your changes**:
+   ```sh
+   git commit -m "Your commit message"
+   ```
+
+4. **Add the remote repository** (if you haven't already):
+   ```sh
+   git remote add origin https://github.com/yourusername/your-repo.git
+   ```
+
+5. **Push your changes to the remote repository**:
+   ```sh
+   git push -u origin main
+   ```
+
+Replace `https://github.com/yourusername/your-repo.git` with the URL of your GitHub repository and `main` with the branch name you want to push to.

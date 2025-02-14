@@ -1,0 +1,12 @@
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+gradle.projectsLoaded { settings ->
+    settings.rootProject.beforeEvaluate { project ->
+        project.buildDir = new File(project.projectDir, 'build')
+    }
+}

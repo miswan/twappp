@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
 
-class Navigatorservice {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<Navigatorstate>();
+class NavigatorService {
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static Future<dynamic> pushNamed(
     String routeName, {

@@ -1,21 +1,21 @@
-part of 'account_details_state.dart';
+part of 'account_details_bloc.dart';
 
 /// Represents the state of AccountDetails in the application.
 
 // ignore_for_file: must_be_immutable
 
-class AccountDetailsstate extends Equatable {
-  AccountDetailsstate({this.accountDetailsModelObj});
+class AccountDetailsState extends Equatable {
+  AccountDetailsState({this.accountDetailsModelObj});
 
-  AccountDetailsModel? accountDetailsModelobj;
+  AccountDetailsModel? accountDetailsModelObj;
 
   @override
-  List<Object?> get props => [accountDetailsModelobj];
+  List<Object?> get props => [accountDetailsModelObj];
 
-  AccountDetailsstate copywith({AccountDetailsModel? accountDetailsModelobj}) {
+  AccountDetailsState copyWith({AccountDetailsModel? accountDetailsModelObj}) {
     return AccountDetailsState(
-      accountDetailsModelobj:
-          accountDetailsModelobj ?? this.accountDetailsModelobj,
+      accountDetailsModelObj:
+          accountDetailsModelObj ?? this.accountDetailsModelObj,
     );
   }
 }

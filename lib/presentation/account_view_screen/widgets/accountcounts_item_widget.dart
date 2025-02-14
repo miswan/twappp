@@ -6,8 +6,8 @@ import '../models/accountcounts_item_model.dart';
 
 // ignore_for_file: must_be_immutable
 
-class AccountcountsItemWidget extends Statelesswidget {
-  AccountcountsItemWidget(this.accountcountsItemModelobj, {Key? key})
+class AccountcountsItemWidget extends StatelessWidget {
+  AccountcountsItemWidget(this.accountcountsItemModelObj, {Key? key})
       : super(
           key: key,
         );
@@ -21,7 +21,7 @@ class AccountcountsItemWidget extends Statelesswidget {
       child: Column(
         children: [
           Text(
-            accountscountsItemModelObj.post!,
+            accountcountsItemModelObj.post!,
             style: CustomTextStyles.titleLargeGray200,
           ),
           SizedBox(height: 10.h),

@@ -2,19 +2,20 @@ buildscript {
     ext.kotlin_version = '1.7.20'
     repositories {
         google()
-        jcenter()
+        mavenCentral()  // Replace jcenter() with mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:7.3.0'  // Update version
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

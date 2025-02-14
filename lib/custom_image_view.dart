@@ -134,7 +134,6 @@ class CustomImageView extends StatelessWidget {
               width: width,
               fit: fit ?? BoxFit.cover,
             ),
-            color: color,
           );
         case ImageType.png:
         default:

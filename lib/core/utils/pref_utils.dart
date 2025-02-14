@@ -1,61 +1,38 @@
-
-
 import 'dart:convert';
-
 import 'dart:ui';
-
 import 'package:flutter/scheduler.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: must_be_immutable
 
-class Prefutils {
+class PrefUtils {
+  PrefUtils() {
+    SharedPreferences.getInstance().then((value) {
+      _sharedPreferences = value;
+    });
+  }
 
-PrefUtils() {
+  static SharedPreferences? _sharedPreferences;
 
-SharedPreferences.getInstance().then((value) {
+  Future<void> init() async {
+    _sharedPreferences ??= await SharedPreferences.getInstance();
+    print('SharedPreference Initialized');
+  }
 
-_sharedPreferences = value;
+  ///will clear all the data stored in preference
+  void clearPreferencesData() async {
+    _sharedPreferences!.clear();
+  }
 
-});
+  Future<void> setThemeData(String value) {
+    return _sharedPreferences!.setString('themeData', value);
+  }
 
-static SharedPreferences? sharedPreferences;
-
-Future<void> init() async {
-
-_sharedPreferences ??= await SharedPreferences.getInstance();
-
-print('SharedPreference Initialized');
-
-}
-
-///will clear all the data stored in preference
-
-void clearPreferencesData() async {
-
-_sharedPreferences!.clear();
-
-}
-
-Future<void> setThemeData(String value) {
-
-return _sharedPreferences!.setString('themeData', value);
-
-}
-
-String getThemeData() {
-
-try {
-
-return_sharedPreferences!.getString('themeData')!;
-
-} catch (e) {
-
-return 'primary';
-
-}
-
-}
-
+  String getThemeData() {
+    try {
+      return _sharedPreferences!.getString('themeData')!;
+    } catch (e) {
+      return 'primary';
+    }
+  }
 }

@@ -1,14 +1,10 @@
-part of 'discover_event.dart';
+part of 'discover_bloc.dart';
 
 /// Abstract class for all events that can be dispatched from the
-
-///Discover widget.
-
-///
-
+/// Discover widget.
 /// Events must be immutable and implement the [Equatable] interface.
 
-class DiscoverEvent extends Equatable {
+abstract class DiscoverEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }

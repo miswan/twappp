@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/foundation.dart';
-
 import '../core/app_export.dart';
-
 import 'en_us/en_us_translations.dart';
 
 extension LocalizationExtension on String {
@@ -17,7 +14,7 @@ class AppLocalization {
 
   Locale locale;
 
-  static final Map<String, Map<String, String>> _localizedValues = {'en': enus};
+  static final Map<String, Map<String, String>> _localizedValues = {'en': enUs};
 
   static AppLocalization of() {
     return Localizations.of<AppLocalization>(
@@ -26,7 +23,7 @@ class AppLocalization {
 
   static List<String> languages() => _localizedValues.keys.toList();
 
-  String getstring(String text) =>
+  String getString(String text) =>
       _localizedValues[locale.languageCode]![text] ?? text;
 }
 
@@ -36,10 +33,6 @@ class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   @override
   bool isSupported(Locale locale) =>
       AppLocalization.languages().contains(locale.languageCode);
-
-//Returning a SynchronousFuture here because an async "load" operation
-
-//cause an async "load" operation
 
   @override
   Future<AppLocalization> load(Locale locale) {
