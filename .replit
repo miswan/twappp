@@ -1,0 +1,8 @@
+modules = ["swift-5.8", "bash", "c-clang14"]
+run = "perbaiki code yang error, serta rubahlah login hanya menggunakan nomer telpon dan koneksikan dengan database firebase semua kebutuhan datanya dan pertahankan struktur file-nya serta hapus file atau code yang tidak digunakan dalam STATE MANAGEMENT bloc"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "perbaiki code yang error, serta rubahlah login hanya menggunakan nomer telpon dan koneksikan dengan database firebase semua kebutuhan datanya dan pertahankan struktur file-nya serta hapus file atau code yang tidak digunakan dalam STATE MANAGEMENT bloc"]
