@@ -21,6 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         phoneNumber: event.phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           await _auth.signInWithCredential(credential);
+          emit(state.copyWith(isAuthenticated: true));
         },
         verificationFailed: (FirebaseAuthException e) {
           emit(state.copyWith(error: e.message));
