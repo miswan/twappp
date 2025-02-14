@@ -1,0 +1,352 @@
+■'s Application1 > lib> localization >
+
+en_us > en_us_translations.dart
+
+final Map<String, String> enUs = {
+
+// Splash Screen
+
+"lbl_social": "Social",
+
+// Onboarding One Screen
+
+"lbl_or_login_with": "Or login with",
+
+"msg_find_new_friend_connection": "Find new friend\nconnection or partner",
+
+"msg_with_billions_of":
+
+"With billions of people in the world we make it easy for you to get to know many new people for you who are looking for n
+
+// Log In Screen
+
+"lbl_password": "Password",
+
+"msg_forgot_password": "Forgot Password?",
+
+"msg_please_enter_your": "Please enter your email address and password. ",
+
+"msg_welcome_to_social": "welcome to Social",
+
+// Forgot Password Screen
+
+"lbl_forgot_password": "Forgot Password",
+
+"msg_please_enter_your2":
+
+"Please enter your password email address. \nYou will receive a link creative a new password \nvia email.",
+
+// Sign Up Screen
+
+"lbl_date_of_birth": "Date of Birth",
+
+"lbl_first_name": "First Name",
+
+"lbl_last_name": "Last Name",
+
+"lbl_male": "Male",
+
+"lbl_phone_no": "Phone No.",
+
+"msg_by_clicking_register":
+
+"By clicking Register, you agree to our Data Policy and Cookie Policy. You will receive an SMS Notification from Facebook
+
+"msg_create_a_new_account": "Create a New Account",
+
+"msg_it_s_fast_and_easy": "It's fast and easy",
+
+// Turn on Notifications Screen
+
+"msg_turn_on_notifications": "Turn on Notifications",
+
+"msg_turn_on_notifications2":
+
+"turn on notifications for news updates about socio so you don't miss it",
+
+// Invite Friends Screen
+
+"lbl_invite_friends": "Invite Friends", "lbl_melvin_klein": "Melvin Klein",
+
+"lbl_next": "Next",
+
+// Latest Screen
+
+"lbl_40_min_ago": "40 min ago",
+
+"lbl_fotography": "#fotography
+
+"lbl_huge": "#huge",
+
+"lbl_nature": "#nature",
+
+"msg_this_is_the_moment":
+
+"This is the moment where i take a photo of a couple hugging in a beautiful rice field.",
+
+// Discover Screen
+
+"lbl_beach": "#Beach",
+
+"lbl_holiday": "#Holiday",
+
+"lbl_ocean": "#Ocean",
+
+"msg_me_and_my_friends":
+
+"Me and my friends ran to the beauty of ocean paradise",
+
+// Daily New Screen
+
+"lbl_animal": "#animal",
+
+"lbl_avari_kudhra": "Avari Kudhra",
+
+"lbl_forest": "#forest",
+
+"lbl_rabbit": "#rabbit",
+
+"msg_this_is_a_very_rare":
+
+"This is a very rare photo taken of me, namely animals that have their own business.",
+
+// Trending posts Screen
+
+"lbl_bali": "#Bali",
+
+"lbl_daily_new": "Daily New",
+
+"lbl_discover": "Discover",
+
+"lbl dreams": "#dreams",
+
+"lbl latest": "Latest".
+
+"lbl_trending": "Trending",
+
+" msg_vacation_to_bali":
+
+"Vacation to Bali is my biggest dream because I want to enjoy the beauty of the beach called Kute, hopefully my dream will
+
+// Stories Screen
+
+"lbl_events": "Events",
+
+"lbl_merry_new_year": "Merry New Year",
+
+"lbl_roy": "Roy",
+
+"msg_19_00_forg_stadium": "19: 00 | Forg Stadium",
+
+"msg_19_35_latuna": "19:35 Latuna Beach",
+
+"msg_21_00_latuna": "21:00 | Latuna Beach",
+
+"msg_blue_loyal_party": "Blue Loyal Party",
+
+"msg_live_we_the_fest": "LIVE We The Fest",
+
+// Stories and Tweets Screen
+
+"lbl_4_hours_ago": "4 hours ago",
+
+"lbl_new_post": "New Post",
+
+"msg_introduce_i_am_a":
+
+"Introduce I am a photographer who travels around the world everyday, these are some of my works as a photographer.",
+
+// Search Screen
+
+"lbl_clear_all": "Clear All", "lbl_recently": "Recently",
+
+// Live Screen
+
+"
+
+lbl_dong_khuwan": "Dong Khuwan\n",
+
+"lbl_erlikhe_sweet": "Erlikhe Sweet\n",
+
+"lbl so beautiful": "So Beautiful",
+
+" "
+
+msg_can_i_join_with": "Can i join with you?",
+
+msg_dong_khuwan_so_beautiful": "Dong Khuwan\nSo Beautiful",
+
+"msg_erlikhe_sweet_can": "Erlikhe Sweet\nCan i join with you?",
+
+// Page View Screen
+
+"lbl_4_6": "4 / 6",
+
+"msg_halford_hotel_is":
+
+"halford hotel is a luxury hotel that has 5 stars, this hotel is the most comfortable hotel in this area, very complete fa
+
+"msg_haliford_luxury_hotel": "Haliford Luxury\nHotel",
+
+// Account Details Screen
+
+"lbl_about_me": "About me", "lbl_photos": "Photos",
+
+"msg_introduce_my_name":
+"Introduce my name is lewandhosky i am a bodybuilder i have been for 10 years i am a trainer and also the owner of the gym
+
+// Friends Screen
+
+"lbl_recommeded": "Recommeded", "lbl_unfollow": "Unfollow",
+
+"msg_connect_to_your": "Connect to Your Friends",
+
+// Notifications Screen
+
+"lbl_2_hours_ago": "2 hours ago",
+
+"msg_arman_has_commented":
+
+"Arman has commented on your story\n "hey there" to your timeline",
+
+"msg_kevin_has_followed": "Kevin has followed you",
+
+"msg_nancy_liked_your": "Nancy liked your photos",
+
+// Detailed Profile Screen
+
+"lbl_21_08_1992": "21/08/1992",
+
+"lbl_date_of_birth2": "Date of birth",
+
+"lbl_done": "Done",
+
+"lbl_email": "Email",
+
+"lbl_phone": "Phone",
+
+"lbl_username": "Username",
+
+"lbl_xyz_gmail_com": "xyz@gmail.com",
+
+"msg_12_3456_789_000": "+12 3456 789 000",
+
+// Streaming Screen
+
+"lbl_45_minutes_ago": "45 minutes ago",
+
+// Common String
+
+"lbl_1_hour_ago": "1 hour ago",
+
+"lbl_2200": "2200",
+
+"lbl_3400": "3400",
+
+"lbl_35_16": "35:16",
+
+"lbl_35_minutes_ago": "35 minutes ago",
+
+"lbl_6500": "6500",
+
+"lbl_75": "75",
+
+"lbl 800": "800",
+
+"lbl_agness_monica": "Agness Monica",
+
+"lbl_albert_o_connor": "Albert of connor",
+
+"lbl_angeline": "Angeline",
+
+"lbl_chrystin": "Chrystin",
+
+"lbl_email_id": "Email Id",
+
+"lbl_female": "Female",
+
+"lbl_follow": "Follow",
+
+"lbl_followers": "Followers",
+
+"lbl_following": "Following",
+
+"lbl_friends": "Friends",
+
+"lbl_gender": "Gender",
+
+"lbl_home": "Home",
+
+"lbl_jordan": "Jordan",
+
+"lbl_kevin_allsrub": "Kevin Allsrub",
+
+"lbl_live": "LIVE",
+
+"lbl_log_in": "Log In",
+
+"lbl_lucas_anna": "Lucas Anna",
+
+"lbl_messages": "Messages",
+
+"lbl_nabila_remaar": "Nabila Remaar",
+
+"lbl_notifications": "Notifications",
+
+" lbl_post": "Post",
+
+"lbl_profile": "Profile",
+
+"lbl_richard_mill": "Richard Mill",
+
+"lbl_rick_onad": "Rick Onad",
+
+"lbl_rizal_reynaldhi": "Rizal Reynaldhi",
+
+"lbl_rosalia": "Rosalia",
+
+"lbl_rose23": "@rose23",
+
+"lbl_sarah_owen": "Sarah Owen",
+
+"lbl_search": "Search",
+
+"lbl_sign_up": "Sign Up",
+
+"lbl_steven_ford": "Steven Ford",
+
+"lbl_stories": "Stories",
+
+"lbl_streaming": "Streaming",
+
+"lbl_vrindha": "Vrindha",
+
+"lbl_windy_wandah": "Windy Wandah",
+
+"lbl_write_a_comment": "write a comment",
+
+"msg_most_people_never":
+
+"Most people never appreciate what he does but instead they see the point of his fault for their own pleasure. ",
+
+"msg_your_e_friends_on": "Youre friends on twitter",
+
+// Validation massage Screen
+
+"err_msg_field_cannot_be_empty": "Field cannot be empty",
+
+"err_msg_please_enter_valid_email": "Please enter valid email",
+
+"err_msg_please_enter_valid_password": "Please enter valid password",
+
+"err_msg_please_enter_valid_phone_number": "Please enter valid phone number",
+
+"err_msg_please_enter_valid_text": "Please enter valid text",
+
+// Network Error String
+
+"msg_network_err": "Network Error",
+
+"msg_something_went_wrong": "Something went wrong!",
+
+};
