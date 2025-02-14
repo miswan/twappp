@@ -17,14 +17,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future<void> _onSendOtp(SendOtpEvent event, Emitter<LoginState> emit) async {
     try {
+      emit(state.copyWith(error: null)); // Clear previous errors
       await _auth.verifyPhoneNumber(
         phoneNumber: event.phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          await _auth.signInWithCredential(credential);
-          emit(state.copyWith(isAuthenticated: true));
+          try {
+            await _auth.signInWithCredential(credential);
+            emit(state.copyWith(isAuthenticated: true, error: null));
+          } catch (e) {
+            emit(state.copyWith(error: 'Failed to sign in: ${e.toString()}'));
+          }
         },
         verificationFailed: (FirebaseAuthException e) {
-          emit(state.copyWith(error: e.message));
+          emit(state.copyWith(error: e.message ?? 'Verification failed'));
         },
         codeSent: (String verificationId, int? resendToken) {
           _verificationId = verificationId;
@@ -41,14 +46,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future<void> _onVerifyOtp(VerifyOtpEvent event, Emitter<LoginState> emit) async {
     try {
+      emit(state.copyWith(error: null)); // Clear previous errors
+      if (_verificationId == null) {
+        emit(state.copyWith(error: 'Verification ID not found. Please request OTP again.'));
+        return;
+      }
       final credential = PhoneAuthProvider.credential(
         verificationId: _verificationId!,
         smsCode: event.otp,
       );
       await _auth.signInWithCredential(credential);
-      emit(state.copyWith(isAuthenticated: true));
+      emit(state.copyWith(isAuthenticated: true, error: null));
     } catch (e) {
-      emit(state.copyWith(error: e.toString()));
+      emit(state.copyWith(error: 'Invalid OTP or verification failed'));
     }
   }
 }
