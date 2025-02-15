@@ -27,9 +27,60 @@ import '../presentation/profile/profile_page.dart';
 import '../presentation/streaming/streaming_page.dart';
 
 class AppRoutes {
-  static const String initialRoute = '/';
+  static const String splashScreen = '/splash_screen';
+  static const String onboardingOneScreen = '/onboarding_one_screen';
+  static const String signUpScreen = '/sign_up_screen';
+  static const String logInScreen = '/log_in_screen';
+  static const String forgotPasswordScreen = '/forgot_password_screen';
+  static const String turnOnNotificationsScreen =
+      '/turn_on_notifications_screen';
+  static const String forYouScreen = '/for_you_screen';
+  static const String pageViewScreen = '/page_view_screen';
+  static const String storiesScreen = '/stories_screen';
+  static const String storiesAndTweetsScreen = '/stories_and_tweets_screen';
+  static const String searchScreen = '/search_screen';
+  static const String trendingPostsScreen = '/trending_posts_screen';
+  static const String liveScreen = '/live_screen';
+  static const String friendsScreen = '/friends_screen';
+  static const String inviteFriendsScreen = '/invite_friends_screen';
+  static const String accountViewScreen = '/account_view_screen';
+  static const String accountDetailsScreen = '/account_details_screen';
+  static const String detailedProfileScreen = '/detailed_profile_screen';
+  static const String latestPage = '/latest_page';
+  static const String discoverPage = '/discover_page';
+  static const String dailyNewPage = '/daily_new_page';
+  static const String trendingTabPage = '/trending_tab_page';
+  static const String notificationsPage = '/notifications_page';
+  static const String profilePage = '/profile_page';
+  static const String streamingPage = '/streaming_page';
+  static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
-    initialRoute: (context) => Container(), // Replace with your initial screen
+    splashScreen: (context) => SplashScreen(),
+    onboardingOneScreen: (context) => OnboardingOneScreen(),
+    signUpScreen: (context) => SignUpScreen(),
+    logInScreen: (context) => LogInScreen(),
+    forgotPasswordScreen: (context) => ForgotPasswordScreen(),
+    turnOnNotificationsScreen: (context) => TurnOnNotificationsScreen(),
+    forYouScreen: (context) => ForYouScreen(),
+    pageViewScreen: (context) => PageViewScreen(),
+    storiesScreen: (context) => StoriesScreen(),
+    storiesAndTweetsScreen: (context) => StoriesAndTweetsScreen(),
+    searchScreen: (context) => SearchScreen(),
+    trendingPostsScreen: (context) => TrendingPostsScreen(),
+    liveScreen: (context) => LiveScreen(),
+    friendsScreen: (context) => FriendsScreen(),
+    inviteFriendsScreen: (context) => InviteFriendsScreen(),
+    accountViewScreen: (context) => AccountViewScreen(),
+    accountDetailsScreen: (context) => AccountDetailsScreen(),
+    detailedProfileScreen: (context) => DetailedProfileScreen(),
+    latestPage: (context) => LatestPage(),
+    discoverPage: (context) => DiscoverPage(),
+    dailyNewPage: (context) => DailyNewPage(),
+    trendingTabPage: (context) => TrendingTabPage(),
+    notificationsPage: (context) => NotificationsPage(),
+    profilePage: (context) => ProfilePage(),
+    streamingPage: (context) => StreamingPage(),
+    appNavigationScreen: (context) => AppNavigationScreen(),
   };
 }

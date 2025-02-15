@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../trending_page/widgets/momentcard_item_widget.dart';
 import 'package:miswan_s_application3/core/app_export.dart';
 import 'bloc/trending_bloc.dart';
+import '../../core/di/injection_container.dart';
 
 class TrendingPage extends StatelessWidget {
-  TrendingPage({Key? key}) : super(key: key);
+  const TrendingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrendingBloc()..add(LoadTrendingData()),
+      create: (context) => sl<TrendingBloc>()..add(LoadTrendingData()),
       child: SafeArea(
         child: Scaffold(
           body: Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../core/app_export.dart';
@@ -13,23 +14,23 @@ part 'log_in_state.dart';
 /// A bloc that manages the state of a LogIn according to the event that is dispatched to it.
 
 class LogInBloc extends Bloc<LogInEvent, LogInState> {
-  LogInBloc(LogInState initialstate) : super(initialstate) {
-    on<LogInInitialEvent>(_onInitialize);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  LogInBloc(LogInState initialState) : super(initialState) {
+    on<LogInInitialEvent>(_onInitial);
     on<ChangePasswordVisibilityEvent>(_changePasswordVisibility);
     on<SubmitLoginEvent>(_onSubmitLogin);
+    on<SendOtpEvent>(_onSendOtp);
   }
 
-  _onInitialize(
-    LogInInitialEvent event,
-    Emitter<LogInState> emit,
-  ) async {
-    emit(
-      state.copywith(
-        emailcontroller: TextEditingController(),
-        passwordController: TextEditingController(),
-        isShowPassword: true,
-      ),
-    );
+  void _onInitial(LogInInitialEvent event, Emitter<LogInState> emit) {
+    emit(state.copyWith(
+      emailcontroller: TextEditingController(),
+      passwordController: TextEditingController(),
+      phoneController: TextEditingController(),
+      isShowPassword: true,
+      isLoading: false,
+    ));
   }
 
   _changePasswordVisibility(
@@ -58,6 +59,37 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       emit(state.copywith(
         isLoading: false,
         error: e.toString(),
+      ));
+    }
+  }
+
+  Future<void> _onSendOtp(SendOtpEvent event, Emitter<LogInState> emit) async {
+    emit(state.copyWith(isLoading: true));
+
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: '+1${state.phoneController?.text}',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await _auth.signInWithCredential(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          emit(state.copyWith(
+            isLoading: false,
+            errorMessage: e.message,
+          ));
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          emit(state.copyWith(
+            isLoading: false,
+            verificationId: verificationId,
+          ));
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        isLoading: false,
+        errorMessage: e.toString(),
       ));
     }
   }

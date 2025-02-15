@@ -28,3 +28,5 @@ class SubmitLoginEvent extends LogInEvent {
   @override
   List<Object?> get props => [email, password];
 }
+
+class SendOtpEvent extends LogInEvent {}

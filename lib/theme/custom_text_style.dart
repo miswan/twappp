@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import '../core/app_export.dart';
+import '../utils/size_utils.dart';
+import 'theme_helper.dart';
 
+/// Text style extensions for font families
 extension TextStyleExtension on TextStyle {
-  TextStyle get inter {
-    return copyWith(
-      fontFamily: 'Inter',
-    );
-  }
-
-  TextStyle get heebo {
-    return copyWith(
-      fontFamily: 'Heebo',
-    );
-  }
+  TextStyle get inter => copyWith(fontFamily: 'Inter');
+  TextStyle get heebo => copyWith(fontFamily: 'Heebo');
 }
 
-/// A collection of pre-defined text styles for customizing text appearance,
-/// categorized by different font families and weights.
+/// A collection of pre-defined text styles for customizing text appearance
 class CustomTextStyles {
   // Body text style
   static TextStyle get bodyLargeBlack90001 =>
@@ -135,6 +128,15 @@ class CustomTextStyles {
   static TextStyle get labelMediumPrimary =>
       theme.textTheme.labelMedium!.copyWith(
         color: theme.colorScheme.primary,
+        fontSize: getFontSize(12),
+        fontWeight: FontWeight.w500,
+      );
+
+  static TextStyle get labelMediumDeeppurpleA200 =>
+      theme.textTheme.labelMedium!.copyWith(
+        color: appTheme.deepPurpleA200,
+        fontSize: getFontSize(12),
+        fontWeight: FontWeight.w500,
       );
 
   // Title text style
@@ -221,3 +223,6 @@ class CustomTextStyles {
         fontWeight: FontWeight.w600,
       );
 }
+
+/// Helper method for consistent font sizing
+double getFontSize(double size) => size.fSize;

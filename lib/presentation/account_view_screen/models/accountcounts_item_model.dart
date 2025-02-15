@@ -1,15 +1,34 @@
 import 'package:equatable/equatable.dart';
 
 /// This class is used in the [accountcounts_item_widget] screen.
-
 // ignore_for_file: must_be_immutable
-
-class AccountcountsItemModel {
-  final String? post;
-  final String? seventyfive;
+class AccountcountsItemModel extends Equatable {
+  String? post;
+  String? seventyfive;
+  String? id;
 
   AccountcountsItemModel({
     this.post,
     this.seventyfive,
-  });
+    this.id,
+  }) {
+    post = post ?? "Post";
+    seventyfive = seventyfive ?? "75";
+    id = id ?? "";
+  }
+
+  AccountcountsItemModel copyWith({
+    String? post,
+    String? seventyfive,
+    String? id,
+  }) {
+    return AccountcountsItemModel(
+      post: post ?? this.post,
+      seventyfive: seventyfive ?? this.seventyfive,
+      id: id ?? this.id,
+    );
+  }
+
+  @override
+  List<Object?> get props => [post, seventyfive, id];
 }

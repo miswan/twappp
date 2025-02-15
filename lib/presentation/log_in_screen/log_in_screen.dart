@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/utils/validation_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../core/app_export.dart';
 import '../../widgets/app_bar/appbar_title_image.dart';
 import '../../theme/custom_button_style.dart';
@@ -41,11 +41,7 @@ class LogInScreen extends StatelessWidget {
               children: [
                 _buildWelcomeSection(context),
                 SizedBox(height: 32.h),
-                _buildEmailField(context),
-                SizedBox(height: 24.h),
-                _buildPasswordField(context),
-                SizedBox(height: 26.h),
-                _buildForgotPasswordSection(context),
+                _buildPhoneField(context),
                 SizedBox(height: 30.h),
                 _buildLoginButton(context),
               ],
@@ -66,94 +62,68 @@ class LogInScreen extends StatelessWidget {
         ),
         SizedBox(height: 12.h),
         Text(
-          "msg_please_enter_your".tr,
+          "msg_enter_phone_number".tr,
           style: theme.textTheme.bodyLarge,
         ),
       ],
     );
   }
 
-  Widget _buildEmailField(BuildContext context) {
+  Widget _buildPhoneField(BuildContext context) {
     return BlocSelector<LogInBloc, LogInState, TextEditingController?>(
-      selector: (state) => state.emailController,
-      builder: (context, emailController) {
+      selector: (state) => state.phoneController,
+      builder: (context, phoneController) {
         return CustomTextFormField(
-          controller: emailController,
-          hintText: "lbl_email_id".tr,
-          textInputType: TextInputType.emailAddress,
+          controller: phoneController,
+          hintText: "lbl_phone_number".tr,
+          textInputType: TextInputType.phone,
+          prefix: Container(
+            margin: EdgeInsets.only(
+              right: 8.h,
+              left: 16.h,
+            ),
+            child: Text(
+              "+1",
+              style: theme.textTheme.bodyLarge,
+            ),
+          ),
           contentPadding: EdgeInsets.symmetric(
             horizontal: 16.h,
             vertical: 14.h,
           ),
           validator: (value) {
-            if (value == null || (!isValidEmail(value, isRequired: true))) {
-              return "err_msg_please_enter_valid_email".tr;
+            if (value == null || value.isEmpty) {
+              return "err_msg_please_enter_valid_phone".tr;
             }
             return null;
           },
         );
       },
-    );
-  }
-
-  Widget _buildPasswordField(BuildContext context) {
-    return BlocBuilder<LogInBloc, LogInState>(
-      builder: (context, state) {
-        return CustomTextFormField(
-          controller: state.passwordController,
-          hintText: "lbl_password".tr,
-          textInputType: TextInputType.visiblePassword,
-          textInputAction: TextInputAction.done,
-          obscureText: state.isShowPassword,
-          suffix: InkWell(
-            onTap: () {
-              context.read<LogInBloc>().add(
-                    ChangePasswordVisibilityEvent(
-                      value: !state.isShowPassword,
-                    ),
-                  );
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 16.h,
-                vertical: 12.h,
-              ),
-              child: CustomImageView(
-                imagePath: ImageConstant.imgAntdesigneyeinvisiblefilled,
-                height: 24.h,
-                width: 24.h,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          validator: (value) {
-            if (value == null || (!isValidPassword(value, isRequired: true))) {
-              return "err_msg_please_enter_valid_password".tr;
-            }
-            return null;
-          },
-        );
-      },
-    );
-  }
-
-  Widget _buildForgotPasswordSection(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: GestureDetector(
-        onTap: () => onTapForgotPassword(context),
-        child: Text(
-          "msg_forgot_password".tr,
-          style: theme.textTheme.bodyLarge,
-        ),
-      ),
     );
   }
 
   Widget _buildLoginButton(BuildContext context) {
-    return CustomElevatedButton(
-      text: "lbl_log_in".tr,
-      buttonStyle: CustomButtonStyles.fillPrimary,
+    return BlocConsumer<LogInBloc, LogInState>(
+      listener: (context, state) {
+        if (state.verificationId != null) {
+          NavigatorService.pushNamed(
+            AppRoutes.verificationScreen,
+            arguments: state.verificationId,
+          );
+        }
+      },
+      builder: (context, state) {
+        return CustomElevatedButton(
+          text: "lbl_continue".tr,
+          buttonStyle: CustomButtonStyles.fillPrimary,
+          onPressed: () {
+            if (_formKey.currentState?.validate() ?? false) {
+              context.read<LogInBloc>().add(SendOtpEvent());
+            }
+          },
+          isLoading: state.isLoading,
+        );
+      },
     );
   }
 
@@ -169,9 +139,5 @@ class LogInScreen extends StatelessWidget {
       ),
       styleType: Style.bgStyle,
     );
-  }
-
-  void onTapForgotPassword(BuildContext context) {
-    NavigatorService.pushNamed(AppRoutes.forgotPasswordScreen);
   }
 }

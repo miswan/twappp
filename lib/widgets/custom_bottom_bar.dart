@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../core/app_export.dart';
+import '../theme/custom_text_style.dart';
+import '../theme/theme_helper.dart';
+import '../utils/size_utils.dart';
 
 enum BottomBarEnum { Home, Streaming, Messages, Notifications, Profile }
 
-// ignore_for_file: must_be_immutable
 class CustomBottomBar extends StatefulWidget {
-  CustomBottomBar({this.onChanged});
+  const CustomBottomBar({Key? key, this.onChanged}) : super(key: key);
 
   final Function(BottomBarEnum)? onChanged;
 
@@ -13,7 +15,6 @@ class CustomBottomBar extends StatefulWidget {
   CustomBottomBarState createState() => CustomBottomBarState();
 }
 
-// ignore_for_file: must_be_immutable
 class CustomBottomBarState extends State<CustomBottomBar> {
   int selectedIndex = 0;
 
@@ -53,70 +54,53 @@ class CustomBottomBarState extends State<CustomBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 80.h,
       decoration: BoxDecoration(
-        color: Color(0XFFFFFFFF),
+        color: Colors.white,
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(12.h),
+          top: Radius.circular(16.h),
         ),
         boxShadow: [
           BoxShadow(
             color: Color(0X338165EA),
             spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(-3, 0),
+            blurRadius: 4.h,
+            offset: Offset(0, -2),
           ),
         ],
       ),
       child: BottomNavigationBar(
         backgroundColor: Colors.transparent,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedFontSize: 0,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        selectedFontSize: 12.sp,
+        unselectedFontSize: 12.sp,
         elevation: 0,
         currentIndex: selectedIndex,
         type: BottomNavigationBarType.fixed,
         items: List.generate(bottomMenuList.length, (index) {
           return BottomNavigationBarItem(
-            icon: SizedBox(
-              width: 48.h,
+            icon: Container(
+              padding: EdgeInsets.symmetric(vertical: 4.h),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CustomImageView(
                     imagePath: bottomMenuList[index].icon,
-                    height: 30.h,
-                    width: double.maxFinite,
-                    color: Color(0XFF8D8B95),
+                    height: 24.h,
+                    width: 24.h,
+                    color: selectedIndex == index
+                        ? theme.colorScheme.primary
+                        : Color(0XFF8D8B95),
                   ),
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 4.h),
                   Text(
                     bottomMenuList[index].title ?? "",
-                    style: theme.textTheme.labelMedium!.copyWith(
-                      color: Color(0XFF8D8B95),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            activeIcon: SizedBox(
-              width: 30.h,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CustomImageView(
-                    imagePath: bottomMenuList[index].activeIcon,
-                    height: 30.h,
-                    width: double.maxFinite,
-                    color: Color(0XFF8165EA),
-                  ),
-                  SizedBox(height: 8.h),
-                  Text(
-                    bottomMenuList[index].title ?? "",
-                    style: CustomTextStyles.labelMediumDeeppurpleA200.copyWith(
-                      color: Color(0XFF8165EA),
-                    ),
+                    style: selectedIndex == index
+                        ? CustomTextStyles.labelMediumPrimary
+                        : theme.textTheme.labelMedium?.copyWith(
+                            color: Color(0XFF8D8B95),
+                          ),
                   ),
                 ],
               ),
@@ -135,7 +119,6 @@ class CustomBottomBarState extends State<CustomBottomBar> {
   }
 }
 
-// ignore_for_file: must_be_immutable
 class BottomMenuModel {
   BottomMenuModel({
     required this.icon,

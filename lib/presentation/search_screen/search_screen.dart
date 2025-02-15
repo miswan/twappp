@@ -4,7 +4,7 @@ import '../../widgets/app_bar/appbar_leading_image.dart';
 
 import '../../core/app_export.dart';
 
-import '../../widgets/app_bar/custom_app_bar.dart';
+import '../../widgets/app_bar/custom_app_bar.dart'; // Ensure this import is correct and the file exists
 
 import 'bloc/search_bloc.dart';
 

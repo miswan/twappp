@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../models/momentcard_item_model.dart';
 import 'package:miswan_s_application3/core/app_export.dart';
 
-// ignore: must_be_immutable
 class MomentcardItemWidget extends StatelessWidget {
-  MomentcardItemWidget(
-    this.momentcardItemModelObj, {
+  final MomentcardItemModel momentcardItemModel;
+
+  const MomentcardItemWidget(
+    this.momentcardItemModel, {
     Key? key,
-  }) : super(
-          key: key,
-        );
-
-  MomentcardItemModel momentcardItemModelObj;
-
-  var controller = Get.find<TrendingController>();
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +27,12 @@ class MomentcardItemWidget extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Obx(
-                  () => CustomImageView(
-                    imagePath: momentcardItemModelObj.image!.value,
-                    height: 221.v,
-                    width: 382.h,
-                    radius: BorderRadius.circular(
-                      15.h,
-                    ),
-                    alignment: Alignment.center,
-                  ),
+                CustomImageView(
+                  imagePath: momentcardItemModel.image,
+                  height: 221.v,
+                  width: 382.h,
+                  radius: BorderRadius.circular(15.h),
+                  alignment: Alignment.center,
                 ),
                 Align(
                   alignment: Alignment.center,
@@ -73,18 +66,14 @@ class MomentcardItemWidget extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Obx(
-                                () => Text(
-                                  momentcardItemModelObj.username!.value,
-                                  style: CustomTextStyles.titleLargePrimary_1,
-                                ),
+                              Text(
+                                momentcardItemModel.username,
+                                style: CustomTextStyles.titleLargePrimary_1,
                               ),
                               SizedBox(height: 5.v),
-                              Obx(
-                                () => Text(
-                                  momentcardItemModelObj.timeAgo!.value,
-                                  style: theme.textTheme.bodyMedium,
-                                ),
+                              Text(
+                                momentcardItemModel.timeAgo,
+                                style: theme.textTheme.bodyMedium,
                               ),
                             ],
                           ),
@@ -103,13 +92,11 @@ class MomentcardItemWidget extends StatelessWidget {
               left: 16.h,
               right: 31.h,
             ),
-            child: Obx(
-              () => Text(
-                momentcardItemModelObj.description!.value,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: CustomTextStyles.bodyLargePrimary,
-              ),
+            child: Text(
+              momentcardItemModel.description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: CustomTextStyles.bodyLargePrimary,
             ),
           ),
           SizedBox(height: 27.v),
@@ -119,11 +106,9 @@ class MomentcardItemWidget extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 1.v),
-                  child: Obx(
-                    () => Text(
-                      momentcardItemModelObj.tag1!.value,
-                      style: theme.textTheme.bodyMedium,
-                    ),
+                  child: Text(
+                    momentcardItemModel.tag1,
+                    style: theme.textTheme.bodyMedium,
                   ),
                 ),
                 Padding(
@@ -131,20 +116,16 @@ class MomentcardItemWidget extends StatelessWidget {
                     left: 30.h,
                     top: 1.v,
                   ),
-                  child: Obx(
-                    () => Text(
-                      momentcardItemModelObj.tag2!.value,
-                      style: theme.textTheme.bodyMedium,
-                    ),
+                  child: Text(
+                    momentcardItemModel.tag2,
+                    style: theme.textTheme.bodyMedium,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 30.h),
-                  child: Obx(
-                    () => Text(
-                      momentcardItemModelObj.tag3!.value,
-                      style: theme.textTheme.bodyMedium,
-                    ),
+                  child: Text(
+                    momentcardItemModel.tag3,
+                    style: theme.textTheme.bodyMedium,
                   ),
                 ),
               ],

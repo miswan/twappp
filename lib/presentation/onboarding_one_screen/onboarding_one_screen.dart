@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/app_export.dart';
-import '../../domain/facebookauth/facebook_auth_helper.dart';
-import '../../domain/googleauth/google_auth_helper.dart';
 import '../../theme/custom_button_style.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_outlined_button.dart';
@@ -45,7 +43,6 @@ class OnboardingOneScreen extends StatelessWidget {
                 ),
               ),
             ),
-            bottomNavigationBar: _buildSocialMediaIcons(context),
           ),
         );
       },
@@ -89,40 +86,6 @@ class OnboardingOneScreen extends StatelessWidget {
             buttonTextStyle: CustomTextStyles.titleMedium18,
             onPressed: () => onTapSignup(context),
           ),
-          SizedBox(height: 46.h),
-          Text(
-            "lbl_or_login_with".tr,
-            style: theme.textTheme.bodyLarge,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSocialMediaIcons(BuildContext context) {
-    return Container(
-      width: 132.h,
-      margin: EdgeInsets.only(bottom: 68.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CustomImageView(
-            imagePath: ImageConstant.imgFacebookPrimary,
-            height: 24.h,
-            width: 24.h,
-            onTap: () => onTapImgFacebookone(context),
-          ),
-          CustomImageView(
-            imagePath: ImageConstant.imgTrashPrimary,
-            height: 24.h,
-            width: 24.h,
-          ),
-          CustomImageView(
-            imagePath: ImageConstant.imgGooglePrimary,
-            height: 24.h,
-            width: 24.h,
-            onTap: () => onTapImgGoogleone(context),
-          ),
         ],
       ),
     );
@@ -134,30 +97,5 @@ class OnboardingOneScreen extends StatelessWidget {
 
   void onTapSignup(BuildContext context) {
     NavigatorService.pushNamed(AppRoutes.signUpScreen);
-  }
-
-  Future<void> onTapImgFacebookone(BuildContext context) async {
-    try {
-      await FacebookAuthHelper().facebookSignInProcess();
-    } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error.toString())),
-      );
-    }
-  }
-
-  Future<void> onTapImgGoogleone(BuildContext context) async {
-    try {
-      final googleUser = await GoogleAuthHelper().googleSignInProcess();
-      if (googleUser == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('User data is empty')),
-        );
-      }
-    } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error.toString())),
-      );
-    }
   }
 }
